@@ -1,0 +1,35 @@
+doctype html
+html
+  head
+    meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag 'http://getbootstrap.com/assets/css/docs.min.css', media: 'all'
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body class="#{controller_name} #{action_name}"
+    #main role='main'
+      .bs-docs-header
+        .container
+          h1 
+            span class="glyphicon glyphicon-asterisk" aria-hidden="true"
+            
+            | Аптека XXI
+
+          p Актуальные цены на лекарства в Чебоксарах
+
+          #carbonads-container
+            .carbonad
+              Цены на лекарства обновляются каждый день.
+
+      .container
+        .content
+          .row
+            .col-md-12
+              = yield
+      footer.bs-docs-footer
+        .container
+          p 
+            | Всего товаров: 
+            b= total_drugs_count
+          small.muted 
+            | Аптеки Чебоксар &copy; 2014
