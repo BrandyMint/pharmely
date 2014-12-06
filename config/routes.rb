@@ -7,9 +7,8 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get :search, to: 'welcome#index', as: :search 
 
-  get :all, to: 'welcome#all'
-
-
+  resources :pharmacies
+  resources :drugs
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

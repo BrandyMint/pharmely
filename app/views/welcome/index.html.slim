@@ -1,12 +1,3 @@
-= simple_form_for search_form, url: search_url,  html: { class: 'form-horizontal' }, method: :get  do |f|
-  = f.input :q, label: false, placeholder: 'Например: Аспирин', hint: 'Напишите наименование лекарства, Например: Брустан'
-  -#input type="search" name="q" class="form-control" placeholder="Например: Аспирин"
+= render 'drugs_search_form', drugs_search_form: drugs_search_form
 
-- if search_form.query.present? || search_results.present?
-  - if search_results.total_count>0
-    = render 'pharmacies', search_results: search_results
-  - else
-    .alert.alert-danger По запросу <b>#{search_form.q}</b> ничего не найдено.
-- else
-  = link_to 'Показать каталог целиком', all_url
-
+= link_to 'Показать каталог целиком', drugs_url

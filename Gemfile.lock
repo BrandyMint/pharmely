@@ -155,6 +155,7 @@ GEM
     multipart-post (2.0.0)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
+    pg (0.17.1)
     pry (0.9.12.6)
       coderay (~> 1.0)
       method_source (~> 0.8)
@@ -276,6 +277,7 @@ DEPENDENCIES
   kaminari
   kaminari-bootstrap
   kaminari-i18n
+  pg
   rails (= 4.2.0.rc1)
   sass-rails (~> 4.0)
   sdoc (~> 0.4.0)

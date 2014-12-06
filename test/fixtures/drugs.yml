@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  producer: MyString
+  city: MyString
+  country: MyString
+  price: 9.99
+  stock_quantity: 9.99
+  pharmacy_id: 
+
+two:
+  name: MyString
+  producer: MyString
+  city: MyString
+  country: MyString
+  price: 9.99
+  stock_quantity: 9.99
+  pharmacy_id: 

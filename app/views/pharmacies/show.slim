@@ -1,0 +1,17 @@
+h1= @pharmacy
+
+.row
+  .col-md-8
+    = @pharmacy.address
+    p 
+      .glyphicon.glyphicon-phone-alt
+      | &nbsp;
+      = tel_to @pharmacy.tel
+
+
+  .col-md-4
+    = render 'pharmacy_map'
+
+.row
+  .col-md-12
+    = render 'drugs/drugs', drugs_search_results: @drugs_search_results

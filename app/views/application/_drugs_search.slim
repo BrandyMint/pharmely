@@ -1,0 +1,6 @@
+= render 'drugs_search_form', drugs_search_form: drugs_search_form
+
+- if drugs_search_results.total_count>0
+  = render 'drugs', drugs_search_results: drugs_search_results
+- else
+  .alert.alert-danger По запросу <b>#{drugs_search_form}</b> ничего не найдено.

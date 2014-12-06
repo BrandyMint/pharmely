@@ -1,0 +1,19 @@
+h3 Всего аптек в базе #{@pharmacies.total_count}
+
+table.table.table-hover.table-condensed.search_results
+  thead
+    tr
+      th Аптека
+      th Адрес
+      th Телефон
+      th Наименований в базе
+  - @pharmacies.each do |p|
+    tr
+      td= link_to p, pharmacy_url(p)
+      td= p.address
+      td= p.tel
+      td
+        = p.drugs.count
+        | &nbsp; позиций
+
+= paginate @pharmacies

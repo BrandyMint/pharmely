@@ -1,8 +1,10 @@
+# Старыи индекс-источник
+
 class PharmacyIndex < Chewy::Index
   define_type :drugs do
     field :name
     field :producer
-    field :counter
+    field :country
     field :price
     field :stock_quantity
     field :pharmacy, type: 'object' do

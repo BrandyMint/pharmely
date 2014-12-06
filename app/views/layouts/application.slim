@@ -10,29 +10,11 @@ html
     = csrf_meta_tags
   body class="#{controller_name} #{action_name}"
     #main role='main'
-      .bs-docs-header
-        .container
-          = link_to root_url, class: :brand do
-            h1
-              span class="glyphicon glyphicon-asterisk" aria-hidden="true"
-              | Аптека XXI
-
-          p Цены на лекарства в Чебоксарах
-
-          #carbonads-container
-            .carbonad
-              | Актуальные цены на лекарства,
-                которые обновляются каждый день.
-
+      = render 'layouts/navigation'
+      = render 'layouts/welcome' if controller_name=='welcome'
       .container
         .content
           .row
             .col-md-12
               = yield
-      footer.bs-docs-footer
-        .container
-          p 
-            | Всего товаров: 
-            b= total_drugs_count
-          small.muted 
-            | Аптеки Чебоксар &copy; 2014
+      = render 'layouts/footer'

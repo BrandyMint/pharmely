@@ -1,4 +1,4 @@
-h3 Всего найдено результатов #{search_results.total_count}
+h3 Всего найдено результатов #{drugs_search_results.total_count}
 
 table.table.table-hover.table-condensed.search_results
   thead
@@ -7,24 +7,24 @@ table.table.table-hover.table-condensed.search_results
       th Наименование
       th colspan=2 Цена
       th Производитель
-  - search_results.each do |p|
+  - drugs_search_results.each do |d|
     tr
       /td 
         /span class="glyphicon glyphicon-map-marker" aria-hidden="true"
       td
-        = p.attributes['pharmacy.title']
-      td== p.name
+        = link_to d.pharmacy['title'], pharmacy_url(d.pharmacy_id)
+      td== d.name
       td
-        - if p.stock_quantity>10
+        - if d.stock_quantity>10
           span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" data-toggle="tooltip" title="Есть в наличии"
         - else
           span class="glyphicon glyphicon-earphone"      aria-hidden="true" data-toggle="tooltip" title="Заказать"
       td(nowrap)
-        = p.price
+        = d.price
         = ' руб.'
       td
-        = p.country
+        = d.country
         = ' / '
-        = p.producer
+        = d.producer
 
-= paginate search_results
+= paginate drugs_search_results

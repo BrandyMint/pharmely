@@ -1,0 +1,7 @@
+.navbar.navbar-static-top.navbar-default role="navigation"
+  .container
+    .navbar-header
+      = link_to app_title, '/', class: 'navbar-brand'
+
+    = render_navigation :expand_all => true, :renderer => :bootstrap
+
