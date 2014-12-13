@@ -3,20 +3,21 @@ h3 Всего найдено результатов #{drugs_search_results.total
 table.table.table-hover.table-condensed.search_results
   thead
     tr
-      th Аптека
-      th Наименование
-      th Цена
-      th Остаток
-      th Производитель
+      - unless @pharmacy.present?
+        th Аптека
+      th= sortable_column 'Наименование', :name
+      th= sortable_column 'Цена', :price
+      th= sortable_column 'Остаток', :stock_quantity
+      th= sortable_column 'Страна', :country
+      th= sortable_column 'Производитель', :producer
   - drugs_search_results.each do |d|
     tr
-      td= link_to d.pharmacy['title'], pharmacy_url(d.pharmacy_id)
+      - unless @pharmacy.present?
+        td= link_to d.pharmacy['title'], pharmacy_url(d.pharmacy_id, drugs_search_form: drugs_search_form.to_hash)
       td== d.name
       td(nowrap style='text-align: right')= format_money d.price
       td== stock_quantity d
-      td
-        = d.country
-        = ' / '
-        = d.producer
+      td== d.country
+      td== d.producer
 
 = paginate drugs_search_results

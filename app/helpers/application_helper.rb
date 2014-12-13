@@ -1,4 +1,23 @@
 module ApplicationHelper
+
+  def sortable_column name, key
+    key = key.to_s
+    dsf = drugs_search_form.clone
+    if drugs_search_form.sortable_column==key
+      title = content_tag :b, name
+      title << '&nbsp;'.html_safe
+      order = dsf.order=='asc' ? '&uarr;' : '&darr;'
+      title << order.html_safe
+    else
+      title = name
+    end
+
+    dsf.sortable_column = key
+    dsf.order = dsf.order=='asc' ? 'desc' : 'asc'
+
+    link_to title.html_safe, url_for( drugs_search_form: dsf.to_hash)
+  end
+
   def pharmacy_tooltip_title drug
     [drug.attributes['pharmacy.title'], drug.attributes['pharmacy.city'], drug.attributes['pharmacy.address']].join(', ')
   end

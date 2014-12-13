@@ -13,6 +13,7 @@ class DrugsQuery
     end
 
     by_pharmacy if pharmacy.present?
+    sorting if form.sortable_column.present?
 
     scope.page page
   end
@@ -21,6 +22,10 @@ class DrugsQuery
 
   def by_pharmacy
     @scope = scope.filter( term: { pharmacy_id: pharmacy.id } )
+  end
+
+  def sorting
+    @scope = scope.order form.sortable_column => form.order_key
   end
 
   def scope
