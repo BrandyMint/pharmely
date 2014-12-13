@@ -20,7 +20,7 @@ class DrugsQuery
   private
 
   def by_pharmacy
-    @scope = scope.filter{ pharmacy_id == pharmacy.id }
+    @scope = scope.filter( term: { pharmacy_id: pharmacy.id } )
   end
 
   def scope

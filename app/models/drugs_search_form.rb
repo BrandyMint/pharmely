@@ -3,8 +3,6 @@ class DrugsSearchForm
 
   attr_accessor :q
 
-  #validates :q, presence: true
-
   def query
     value = q
     return value if value.blank?

@@ -1,2 +1,2 @@
-= simple_form_for drugs_search_form, url: drugs_url,  html: { class: 'form-horizontal' }, method: :get  do |f|
+= simple_form_for drugs_search_form, url: url_for,  html: { class: 'form-horizontal' }, method: :get  do |f|
   = f.input :q, label: false, placeholder: 'Например: Аспирин', hint: 'Напишите наименование лекарства, Например: Брустан'

@@ -11,7 +11,7 @@ html
   body class="#{controller_name} #{action_name}"
     #main role='main'
       = render 'layouts/navigation'
-      = render 'layouts/welcome' if controller_name=='welcome'
+      = render 'layouts/welcome' if action_name=='welcome'
       .container
         .content
           .row

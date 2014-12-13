@@ -1,6 +1,12 @@
 class DrugsController < ApplicationController
+  def welcome
+    if drugs_search_form.q.present?
+      index
+    end
+  end
+
   def index
-    render locals: { drugs_search_results: query.result, drugs_search_form: drugs_search_form }
+    render :index, locals: { drugs_search_results: query.result, drugs_search_form: drugs_search_form }
   end
 
   private
