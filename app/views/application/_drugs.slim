@@ -10,6 +10,7 @@ table.table.table-hover.table-condensed.search_results
       th= sortable_column 'Остаток', :stock_quantity
       th= sortable_column 'Страна', :country
       th= sortable_column 'Производитель', :producer
+      th Корзина
   - drugs_search_results.each do |d|
     tr
       - unless @pharmacy.present?
@@ -19,5 +20,7 @@ table.table.table-hover.table-condensed.search_results
       td== stock_quantity d
       td== d.country
       td== d.producer
+      td
+        = add_to_cart_link d
 
 = paginate drugs_search_results

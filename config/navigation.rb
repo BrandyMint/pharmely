@@ -3,8 +3,9 @@
 
 SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
-    primary.item :products,  "Аптеки", pharmacies_url
+    primary.item :pharmacies,  "Аптеки", pharmacies_url
     primary.item :products,  'Поиск лекарств', drugs_url
+    primary.item :cart,  'Корзина', cart_url
 
     primary.dom_class = 'nav navbar-nav pull-right'
 

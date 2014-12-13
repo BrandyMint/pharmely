@@ -10,6 +10,9 @@ gem 'autoprefixer-rails'
 
 gem 'carrierwave'
 
+gem 'therubyracer'
+gem 'activerecord-session_store'
+
 gem 'chewy'
 gem 'virtus'
 gem 'simple-navigation', :git => 'git://github.com/andi/simple-navigation.git'

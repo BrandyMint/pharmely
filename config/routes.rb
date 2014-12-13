@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   resources :pharmacies, onlyy: [:index, :show]
   resources :drugs, only: [:index, :show]
 
+  resource :cart, controller: :cart
+
+  resources :cart_items
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

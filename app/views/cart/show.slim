@@ -1,0 +1,23 @@
+- if cart.empty?
+  h2 Корзина пуста
+- else
+  h2 Корзина
+
+  table.table.table-hover.table-condensed.search_results
+    - cart.items.each do |i|
+      tr
+        td= i.drug.pharmacy.title
+        td
+          = i.drug.name
+          i.text-muted
+            |  (
+            = i.drug.producer
+            | /
+            = i.drug.country
+            | )
+        td= format_money i.drug.price
+        td
+          = i.count
+          | шт.
+
+  = link_to 'Очистить корзину', cart_url, method: :delete, class: 'btn btn-default'

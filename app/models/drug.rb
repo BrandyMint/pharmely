@@ -12,6 +12,10 @@ class Drug < ActiveRecord::Base
 
   end
 
+  def to_s
+    name
+  end
+
   def name
     super.to_s.mb_chars.capitalize
   end
