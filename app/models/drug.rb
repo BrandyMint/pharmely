@@ -11,4 +11,16 @@ class Drug < ActiveRecord::Base
     pharmacy.drugs.create! name: attr['name'], price: attr['price'], country: attr['country'], stock_quantity: attr['stock_quantity'], producer: attr['producer']
 
   end
+
+  def name
+    super.to_s.mb_chars.capitalize
+  end
+
+  def country
+    super.to_s.mb_chars.capitalize
+  end
+
+  def producer
+    super.to_s.capitalize
+  end
 end

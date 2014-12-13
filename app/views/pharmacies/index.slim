@@ -8,12 +8,11 @@ table.table.table-hover.table-condensed.search_results
       th Телефон
       th Наименований в базе
   - @pharmacies.each do |p|
+    - p = PharmacyDecorator.decorate p
     tr
-      td= link_to p, pharmacy_url(p)
+      td= link_to p.title, pharmacy_url(p)
       td= p.address
-      td= p.tel
-      td
-        = p.drugs.count
-        | &nbsp; позиций
+      td= p.telephones
+      td= p.drugs_link
 
 = paginate @pharmacies
