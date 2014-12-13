@@ -2,14 +2,17 @@ h1= @pharmacy
 
 .row
   .col-md-8
+    = @pharmacy.city
+    | ,
     = @pharmacy.address
     p 
       .glyphicon.glyphicon-phone-alt
       | &nbsp;
-      = tel_to @pharmacy.tel
+      = telephones @pharmacy.telephones
     p
-      Время работы: 9:00 - 21:00
-
+      .glyphicon.glyphicon-time
+      | &nbsp;
+      = @pharmacy.work_time || 'не установлено'
 
   .col-md-4
     = render 'pharmacy_map'

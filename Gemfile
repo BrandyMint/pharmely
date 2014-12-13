@@ -8,6 +8,8 @@ gem 'sass-rails', '~> 4.0'
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'autoprefixer-rails'
 
+gem 'carrierwave'
+
 gem 'chewy'
 gem 'virtus'
 gem 'simple-navigation', :git => 'git://github.com/andi/simple-navigation.git'
