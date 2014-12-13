@@ -3,13 +3,14 @@ h3 Всего аптек в базе #{@pharmacies.total_count}
 table.table.table-hover.table-condensed.search_results
   thead
     tr
-      th Аптека
+      th colspan=2 Аптека
       th Адрес
       th Телефон
       th Наименований в базе
   - @pharmacies.each do |p|
     - p = PharmacyDecorator.decorate p
     tr
+      td= p.logo
       td= link_to p.title, pharmacy_url(p)
       td= p.address
       td= p.telephones

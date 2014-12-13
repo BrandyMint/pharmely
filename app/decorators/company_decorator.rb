@@ -2,9 +2,7 @@ class CompanyDecorator < Draper::Decorator
   delegate_all
 
   def logo size='64x64'
-    if source.logo.present?
-      h.image_tag source.logo.url, size: size
-    end
+    h.image_tag source.logo.url, size: size
   end
 
   # Define presentation-specific methods here. Helpers are accessed through

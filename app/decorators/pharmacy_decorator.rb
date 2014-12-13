@@ -1,10 +1,15 @@
 class PharmacyDecorator < Draper::Decorator
   delegate_all
 
+  delegate :logo, to: :decorated_company
+
   def drugs_link
     h.link_to "#{drugs.count} позиций", h.pharmacy_url(source)
   end
 
+  def decorated_company
+    CompanyDecorator.decorate source.company
+  end
 
   def telephones
     h.telephones source.telephones || source.company.telephones

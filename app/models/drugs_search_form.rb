@@ -12,7 +12,7 @@ class DrugsSearchForm
   end
 
   def to_s
-    q
+    q.to_s
   end
 
   def order_key
