@@ -12,10 +12,8 @@ table.table.table-hover.table-condensed.search_results
     tr
       td= link_to d.pharmacy['title'], pharmacy_url(d.pharmacy_id)
       td== d.name
-      td(nowrap)
-        = d.price
-        = ' руб.'
-      td= stock_quantity d
+      td(nowrap style='text-align: right')= format_money d.price
+      td== stock_quantity d
       td
         = d.country
         = ' / '

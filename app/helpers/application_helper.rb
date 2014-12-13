@@ -3,6 +3,10 @@ module ApplicationHelper
     [drug.attributes['pharmacy.title'], drug.attributes['pharmacy.city'], drug.attributes['pharmacy.address']].join(', ')
   end
 
+  def format_money price
+    number_to_currency price, precision: 2, locale: :ru, unit: 'руб.', separator: ",", format: "%n %u"
+  end
+
   def app_title
     'Панацея'
   end
