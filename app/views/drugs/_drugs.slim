@@ -5,23 +5,17 @@ table.table.table-hover.table-condensed.search_results
     tr
       th Аптека
       th Наименование
-      th colspan=2 Цена
+      th Цена
+      th Остаток
       th Производитель
   - drugs_search_results.each do |d|
     tr
-      /td 
-        /span class="glyphicon glyphicon-map-marker" aria-hidden="true"
-      td
-        = link_to d.pharmacy['title'], pharmacy_url(d.pharmacy_id)
+      td= link_to d.pharmacy['title'], pharmacy_url(d.pharmacy_id)
       td== d.name
-      td
-        - if d.stock_quantity>10
-          span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" data-toggle="tooltip" title="Есть в наличии"
-        - else
-          span class="glyphicon glyphicon-earphone"      aria-hidden="true" data-toggle="tooltip" title="Заказать"
       td(nowrap)
         = d.price
         = ' руб.'
+      td= stock_quantity d
       td
         = d.country
         = ' / '
