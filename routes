@@ -1,0 +1,24 @@
+         Prefix Verb   URI Pattern                    Controller#Action
+     admin_root GET    /admin(.:format)               admin/dashboard#index
+admin_dashboard GET    /admin/dashboard(.:format)     admin/dashboard#index
+ admin_comments GET    /admin/comments(.:format)      admin/comments#index
+                POST   /admin/comments(.:format)      admin/comments#create
+  admin_comment GET    /admin/comments/:id(.:format)  admin/comments#show
+           root GET    /                              welcome#index
+         search GET    /search(.:format)              welcome#index
+     pharmacies GET    /pharmacies(.:format)          pharmacies#index
+                POST   /pharmacies(.:format)          pharmacies#create
+   new_pharmacy GET    /pharmacies/new(.:format)      pharmacies#new
+  edit_pharmacy GET    /pharmacies/:id/edit(.:format) pharmacies#edit
+       pharmacy GET    /pharmacies/:id(.:format)      pharmacies#show
+                PATCH  /pharmacies/:id(.:format)      pharmacies#update
+                PUT    /pharmacies/:id(.:format)      pharmacies#update
+                DELETE /pharmacies/:id(.:format)      pharmacies#destroy
+          drugs GET    /drugs(.:format)               drugs#index
+                POST   /drugs(.:format)               drugs#create
+       new_drug GET    /drugs/new(.:format)           drugs#new
+      edit_drug GET    /drugs/:id/edit(.:format)      drugs#edit
+           drug GET    /drugs/:id(.:format)           drugs#show
+                PATCH  /drugs/:id(.:format)           drugs#update
+                PUT    /drugs/:id(.:format)           drugs#update
+                DELETE /drugs/:id(.:format)           drugs#destroy

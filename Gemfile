@@ -23,6 +23,12 @@ gem 'slim-rails'
 
 gem 'pg'
 
+gem 'devise', github: 'plataformatec/devise', branch: 'lm-rails-4-2'
+gem 'inherited_resources', github: 'codecraft63/inherited_resources', branch: 'master'
+gem 'responders', '~> 2.0'
+
+gem 'activeadmin', github: 'activeadmin'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
