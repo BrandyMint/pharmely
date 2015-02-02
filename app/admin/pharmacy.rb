@@ -1,4 +1,6 @@
+
 ActiveAdmin.register Pharmacy do
+  require 'pry'
   menu label: 'Точки продаж'
 
   index do
@@ -10,24 +12,20 @@ ActiveAdmin.register Pharmacy do
     column :drugs do |p|
       link_to p.drugs.count, admin_drugs_url(q: { pharmacy_id_eq: p.id })
     end
-    actions
+    actions defaults: true do |pharmacy|
+      link_to 'Импорт прайс-листа', edit_pharmacy_url(pharmacy)
+    end
 
   end
 
+  action_item :import, only: [:show, :edit] do 
+    link_to 'Импорт прайс-листа', edit_pharmacy_url(pharmacy)
+  end
+
+  member_action :import do
+    redirect_to edit_pharmacy_url(resource)
+  end
+
   permit_params Pharmacy.attribute_names
-
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:permitted, :attributes]
-  #   permitted << :other if resource.something?
-  #   permitted
-  # end
-
 
 end

@@ -1,8 +1,16 @@
 source 'https://rubygems.org'
 
+gem 'sorcery'
+gem 'authority'
+
+gem "bugsnag"
+
+# Reading xlsx, ods, csv
+gem 'roo'
+gem 'spreadsheet'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0.rc1'
+gem 'rails', '~> 4.2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0'
 gem 'bootstrap-sass', '~> 3.3.1'
@@ -13,7 +21,7 @@ gem 'carrierwave'
 gem 'therubyracer'
 gem 'activerecord-session_store'
 
-gem 'chewy'
+gem 'chewy', github: 'toptal/chewy'
 gem 'virtus'
 gem 'simple-navigation', :git => 'git://github.com/andi/simple-navigation.git'
 gem 'simple-navigation-bootstrap'
@@ -31,8 +39,8 @@ gem 'pg'
 gem 'draper'
 
 #gem 'devise', github: 'plataformatec/devise', branch: 'lm-rails-4-2'
-gem 'inherited_resources', github: 'codecraft63/inherited_resources', branch: 'master'
-gem 'responders', '~> 2.0'
+gem 'inherited_resources' #, github: 'codecraft63/inherited_resources', branch: 'master'
+gem 'responders'#, '~> 2.0'
 gem 'activeadmin', github: 'activeadmin'
 
 # Use Uglifier as compressor for JavaScript assets
@@ -62,14 +70,26 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  #gem 'byebug'
 
-  gem 'jazz_hands'
+  gem 'pry'
+  gem 'pry-nav'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem "rspec-rails"
+  gem 'rspec-collection_matchers'
+  gem 'rb-inotify'
+  gem 'factory_girl_rails'
+  gem "listen", "~> 2.7.12"
+  gem 'guard'
+
+  gem 'guard-rspec', require: false
+  gem 'guard-rails'
+  gem 'guard-bundler'
+  gem 'guard-ctags-bundler'
 end
 

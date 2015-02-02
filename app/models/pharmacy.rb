@@ -12,6 +12,10 @@ class Pharmacy < ActiveRecord::Base
     title
   end
 
+  def drugs_count
+    drugs.count
+  end
+
   def location
     [lng, lat]
   end

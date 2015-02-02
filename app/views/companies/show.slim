@@ -1,0 +1,34 @@
+h1= @company
+- pc = CompanyDecorator.decorate @company
+
+.row
+  .col-md-2
+    = pc.logo '128x128'
+  .col-md-6
+    = pc.city
+    p 
+      .glyphicon.glyphicon-phone-alt
+      | &nbsp;
+      = pc.telephones
+
+  /.col-md-4
+    /= render 'pharmacy_map'
+
+.row
+  .col-md-12
+    table.table.table-hover.table-condensed.search_results
+      thead
+        tr
+          th Адрес
+          th Лекарств
+          th Обновлено
+          th Действие
+      tbody
+        - pc.pharmacies.each do |pharm|
+          - pharm = PharmacyDecorator.decorate pharm
+          td= link_to pharm.address, pharmacy_url(pharm)
+          td= pharm.drugs_count
+          td= pharm.updated_at
+          td= link_to 'Загрузит каталог', edit_pharmacy_url(pharm)
+    //-#= render 'drugs_search', drugs_search_results: drugs_search_results, drugs_search_form: drugs_search_form
+

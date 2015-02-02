@@ -4,5 +4,23 @@ class Company < ActiveRecord::Base
 
   mount_uploader :logo, LogoUploader
 
-  scope :ordered, -> { order :name }
+  scope :ordered, -> { order :title }
+
+  validates :login, uniqueness: true, allow_blank: true
+
+  def authenticate _login, _password
+    login==_login && password==_password
+  end
+
+  def to_s
+    title
+  end
+
+  def pharmacies_count
+    pharmacies.count
+  end
+
+  def drugs_count
+    drugs.count
+  end
 end

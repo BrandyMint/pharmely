@@ -3,6 +3,12 @@ class Drug < ActiveRecord::Base
 
   update_index('drugs#drug') { self }
 
+  validates :price, presence: true
+  validates :name, presence: true
+  #validates :producer, presence: true
+  #validates :country, presence: true
+  validates :stock_quantity, presence: true, numericality: true
+
   def self.create_from_elastic object
     attr = object.attributes
 

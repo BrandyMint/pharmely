@@ -5,9 +5,9 @@ h1= @pharmacy
   .col-md-2
     = pd.logo '128x128'
   .col-md-6
-    = @pharmacy.city
+    = pd.city
     | ,
-    = @pharmacy.address
+    = pd.address
     p 
       .glyphicon.glyphicon-phone-alt
       | &nbsp;
@@ -15,7 +15,7 @@ h1= @pharmacy
     p
       .glyphicon.glyphicon-time
       | &nbsp;
-      = @pharmacy.work_time || 'не установлено'
+      = pharmacy.work_time
 
   .col-md-4
     = render 'pharmacy_map'
@@ -23,3 +23,9 @@ h1= @pharmacy
 .row
   .col-md-12
     = render 'drugs_search', drugs_search_results: drugs_search_results, drugs_search_form: drugs_search_form
+
+hr
+small.text-muted.pull-right
+  | Дата загрузки цен:
+  | &nbsp;
+  i= pd.updated_at

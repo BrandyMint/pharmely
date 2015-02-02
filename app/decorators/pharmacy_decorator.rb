@@ -3,6 +3,14 @@ class PharmacyDecorator < Draper::Decorator
 
   delegate :logo, to: :decorated_company
 
+  def work_time
+    source.work_time || 'не установлено'
+  end
+
+  def updated_at
+    I18n.l source.updated_at, format: :short
+  end
+
   def drugs_link
     h.link_to "#{drugs.count} позиций", h.pharmacy_url(source)
   end

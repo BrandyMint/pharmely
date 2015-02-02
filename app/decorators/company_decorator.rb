@@ -5,6 +5,10 @@ class CompanyDecorator < Draper::Decorator
     h.image_tag source.logo.url, size: size
   end
 
+  def telephones
+    h.telephones source.telephones
+  end
+
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:
   #

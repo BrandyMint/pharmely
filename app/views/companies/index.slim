@@ -1,0 +1,18 @@
+h3 Всего аптек в базе #{@companies.total_count}
+
+table.table.table-hover.table-condensed.search_results
+  thead
+    tr
+      th colspan=2 Название
+      th Телефон
+      th Город
+      th Аптеки
+  - @companies.each do |p|
+    - p = CompanyDecorator.decorate p
+    tr
+      td= p.logo
+      td= link_to p.title, company_url(p)
+      td= p.telephones
+      td= p.pharmacies_count
+
+= paginate @companies

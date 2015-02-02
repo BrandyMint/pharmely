@@ -1,0 +1,31 @@
+h1
+  = @pharmacy
+  small= @pharmacy.address
+
+hr
+p
+  = link_to 'На страницу аптеки', pharmacy_url(@pharmacy)
+  
+h2 Загрузка каталога
+
+= simple_form_for @pharmacy, html: {multipart: true} do |f|
+  = f.error_notification
+  = f.input :file, as: :file, label: 'Файл в формате .xlsx'
+
+  = f.button :submit, "Зарузить", class: 'btn-default'
+
+hr
+= link_to 'Пример таблицы для загрузки', 'https://docs.google.com/spreadsheets/d/1nqeLMCIG0la0b2efO8IuCpviE1XZ2T1tQ26g-Jy84ss/edit?usp=sharing', target: '_blank'
+
+hr
+
+h3 Автоматическая загрузка прайслиста
+p Классический http multipart upload post-запросом
+p Авторизация: http basic
+pre
+  | URL: #{pharmacy_url(@pharmacy)}
+  br
+  | method: POST
+  br
+  | Content-Type: multipart/form-data
+

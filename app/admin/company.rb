@@ -21,6 +21,10 @@ ActiveAdmin.register Company do
       f.input :telephones
       f.input :logo, :as => :file
     end
+    f.inputs "Доступ" do
+      f.input :login
+      f.input :password
+    end
     f.actions
   end
 
