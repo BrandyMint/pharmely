@@ -32,6 +32,32 @@ GIT
       activemodel (~> 4.0)
 
 GIT
+  remote: git://github.com/roo-rb/roo-xls.git
+  revision: a316a88d042ca6e28a83c46a0db1906a9feebb62
+  specs:
+    roo-xls (0.0.1)
+      nokogiri
+      roo (>= 2.0.0)
+      spreadsheet (> 0.9.0)
+
+GIT
+  remote: git://github.com/roo-rb/roo.git
+  revision: 3a370f84bc86bf9e0f5da24323a2bcc3be2977ed
+  specs:
+    roo (2.0.0)
+      nokogiri
+      rubyzip (>= 1.0.0)
+
+GIT
+  remote: git://github.com/tobiassvn/sidetiq.git
+  revision: 3d78df37384e664bbb59df9091235a79700650aa
+  specs:
+    sidetiq (0.6.3)
+      celluloid (>= 0.14.1)
+      ice_cube (= 0.11.1)
+      sidekiq (>= 3.0.0)
+
+GIT
   remote: git://github.com/toptal/chewy.git
   revision: d91957c18697f56f43f525eed26747ed6cbeac7c
   specs:
@@ -120,6 +146,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.0)
+    connection_pool (2.1.1)
     debug_inspector (0.0.2)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -136,6 +163,8 @@ GEM
     elasticsearch-transport (1.0.6)
       faraday
       multi_json
+    enumerize (0.8.0)
+      activesupport (>= 3.2)
     equalizer (0.0.9)
     erubis (2.7.0)
     execjs (2.2.2)
@@ -179,10 +208,12 @@ GEM
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
+    hashie (3.3.2)
     hike (1.2.3)
     hitimes (1.2.2)
     httpauth (0.2.0)
     i18n (0.7.0)
+    ice_cube (0.11.1)
     ice_nine (0.11.0)
     inherited_resources (1.6.0)
       actionpack (>= 3.2, < 5)
@@ -245,7 +276,11 @@ GEM
       slop (~> 3.4)
     pry-nav (0.2.3)
       pry (~> 0.9.10)
+    pry-syntax-hacks (0.0.6)
+      pry (>= 0.9.8)
     rack (1.6.0)
+    rack-protection (1.5.3)
+      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.0)
@@ -284,14 +319,13 @@ GEM
       ffi (>= 0.5.0)
     rdoc (4.1.2)
       json (~> 1.4)
+    redis (3.2.0)
+    redis-namespace (1.5.1)
+      redis (~> 3.0, >= 3.0.4)
     ref (1.0.5)
     request_store (1.0.5)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
-    roo (1.13.2)
-      nokogiri
-      rubyzip
-      spreadsheet (> 0.6.4)
     rspec (3.1.0)
       rspec-core (~> 3.1.0)
       rspec-expectations (~> 3.1.0)
@@ -315,7 +349,7 @@ GEM
       rspec-support (~> 3.1.0)
     rspec-support (3.1.2)
     ruby-ole (1.2.11.8)
-    rubyzip (1.1.6)
+    rubyzip (1.1.7)
     sass (3.2.19)
     sass-rails (4.0.5)
       railties (>= 4.0.0, < 5.0)
@@ -326,9 +360,30 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     shellany (0.0.1)
+    sidekiq (3.3.2)
+      celluloid (>= 0.16.0)
+      connection_pool (>= 2.1.1)
+      json
+      redis (>= 3.0.6)
+      redis-namespace (>= 1.3.1)
+    sidekiq-failures (0.4.3)
+      sidekiq (>= 2.16.0)
+    sidekiq-reset_statistics (1.1.0)
+    sidekiq-status (0.5.1)
+      sidekiq (>= 2.7, < 3.4)
+    sidekiq-unique-jobs (3.0.11)
+      sidekiq (>= 2.6)
+    sidekiq_mailer (0.0.8)
+      actionmailer (>= 3.0)
+      activesupport (>= 3.0)
+      sidekiq (>= 2.3)
     simple-navigation-bootstrap (1.0.0)
       railties (>= 3.1)
       simple-navigation (>= 3.7.0)
+    sinatra (1.4.5)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (~> 1.3, >= 1.3.4)
     slim (3.0.1)
       temple (~> 0.7.3)
       tilt (>= 1.3.3, < 2.1)
@@ -396,12 +451,14 @@ DEPENDENCIES
   chewy!
   coffee-rails (~> 4.1.0)
   draper
+  enumerize
   factory_girl_rails
   guard
   guard-bundler
   guard-ctags-bundler
   guard-rails
   guard-rspec
+  hashie
   inherited_resources
   jquery-rails
   kaminari
@@ -411,17 +468,27 @@ DEPENDENCIES
   pg
   pry
   pry-nav
+  pry-syntax-hacks
   rails (~> 4.2)
   rb-inotify
   responders
-  roo
+  roo!
+  roo-xls!
   rspec-collection_matchers
   rspec-rails
   sass-rails (~> 4.0)
   sdoc (~> 0.4.0)
+  sidekiq (~> 3.3.0)
+  sidekiq-failures
+  sidekiq-reset_statistics
+  sidekiq-status
+  sidekiq-unique-jobs
+  sidekiq_mailer
+  sidetiq!
   simple-navigation!
   simple-navigation-bootstrap
   simple_form!
+  sinatra (>= 1.3.0)
   slim-rails
   sorcery
   spreadsheet

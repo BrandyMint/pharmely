@@ -1,5 +1,6 @@
 class Pharmacy < ActiveRecord::Base
   has_many :drugs
+  has_many :price_lists
   belongs_to :company
 
   scope :ordered, -> { order :address }

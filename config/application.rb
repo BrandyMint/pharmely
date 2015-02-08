@@ -32,6 +32,7 @@ module Pharmely
 
     #config.assets.enabled = true
     config.autoload_paths += Dir[
+      "#{Rails.root}/app/workers",
       "#{Rails.root}/app/services"
     ]
 

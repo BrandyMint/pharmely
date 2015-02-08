@@ -1,12 +1,24 @@
+require 'zip/filesystem'
 class ImportService
+  # CSV format
+  # : Field delimeter = ,
+  # : Text delimeter = "
+  # http://ruby-doc.org/stdlib-1.9.3/libdoc/csv/rdoc/CSV.html
+  #
   MAX_ERRORS = 20
+  EXTENTIONS=['.xlsx', '.xls', '.csv']
   FIELDS = {
     name: 'Наименование товара',
     price: 'Цена',
     producer: 'Производитель',
     stock_quantity: 'Остаток',
-    country: 'Страна'
+    country: 'Страна',
+    article: 'артикул',
+    barcodes: 'штрих',
+    unit:    'измерения'
   }
+  REQUIRED_FIELDS = [:name, :price, :stock_quantity]
+
   include Virtus.model strict: true
   # Наименование товара, Цена (отпускная)отпускная, Остаток, Производитель, Страна
 
@@ -33,22 +45,25 @@ class ImportService
         end
         raise Error, errors if errors.any?
 
-        pharmacy.drugs.where('updated_at<?', time_start).destroy_all
+        deletes = pharmacy.drugs.where('updated_at<?', time_start)
+        ids = deletes.pluck(:id)
+        DrugsIndex::Drug.filter(term: { id: ids }).delete_all
+        deletes.delete_all
       end
     end
 
     pharmacy.touch
 
-    return drugs
+    return [drugs.count, errors.count]
   end
 
-  private
-
   def import_row row
+    return if row[columns[:name]]=='Итого'
     attrs = {}
     columns.each do |key, index|
       attrs[key] = row[index]
     end
+    Rails.logger.debug "Import row: #{attrs}"
     pharmacy.drugs.create! attrs
   end
 
@@ -60,9 +75,9 @@ class ImportService
       end
     end
 
-    unknown_columns = FIELDS.keys - columns.keys
+    unknown_columns = REQUIRED_FIELDS - columns.keys
 
-    raise_error "Не устовлены колонки: #{unknown_columns}" if unknown_columns.any?
+    raise_error "Не устовлены обязательные колонки: #{unknown_columns}" if unknown_columns.any?
   end
 
   def raise_error message = nil
@@ -75,7 +90,7 @@ class ImportService
   end
 
   def roo
-    @roo ||= Roo::Spreadsheet.open file.path, extension: :xlsx
+    @roo ||= Roo::Spreadsheet.open file.path, extension: File.extname(file.original_filename)
   end
 
   def sheet
@@ -93,6 +108,10 @@ class ImportService
     attr_reader :errors
     def initialize errors
       @errors = errors
+    end
+
+    def to_s
+      errors.to_s
     end
   end
 end

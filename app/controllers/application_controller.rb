@@ -7,6 +7,12 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def authenticate_admin_user!
+    authenticate_or_request_with_http_basic("admin access") do |name, password|
+      name == Secrets.admin.name && password == Secrets.admin.password
+    end
+  end
+
   def drugs_search_form
     @drugs_search_form ||= DrugsSearchForm.new params[:drugs_search_form]
   end

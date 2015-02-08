@@ -3,10 +3,14 @@ source 'https://rubygems.org'
 gem 'sorcery'
 gem 'authority'
 
+gem 'hashie'
+
 gem "bugsnag"
+gem 'enumerize'
 
 # Reading xlsx, ods, csv
-gem 'roo'
+gem 'roo', github: 'roo-rb/roo'
+gem 'roo-xls', github: 'roo-rb/roo-xls'
 gem 'spreadsheet'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -17,6 +21,16 @@ gem 'bootstrap-sass', '~> 3.3.1'
 gem 'autoprefixer-rails'
 
 gem 'carrierwave'
+
+gem 'sinatra', '>= 1.3.0', :require => nil
+gem 'sidekiq', '~> 3.3.0'
+gem 'sidekiq-reset_statistics'
+gem 'sidekiq-failures'
+gem 'sidekiq-unique-jobs'
+gem 'sidekiq-status'
+gem 'sidekiq_mailer'
+gem 'sidetiq', github: 'tobiassvn/sidetiq'
+
 
 gem 'therubyracer'
 gem 'activerecord-session_store'
@@ -73,6 +87,7 @@ group :development, :test do
   #gem 'byebug'
 
   gem 'pry'
+  gem 'pry-syntax-hacks'
   gem 'pry-nav'
 
   # Access an IRB console on exception pages or by using <%= console %> in views

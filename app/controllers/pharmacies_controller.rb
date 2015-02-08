@@ -14,15 +14,19 @@ class PharmaciesController < ApplicationController
 
   def update
     filename = uploaded_io.original_filename
-    if File.extname(filename)=='.xlsx'
-      drugs = ImportService.new(pharmacy: pharmacy, file: uploaded_io).perform
-      flash[:notice] = "Удачно загружено #{drugs.count} товаров"
+    if DrugsImportWorker::AVAILABLE_EXTENTIONS.include? File.extname(filename)
+      pharmacy.price_lists.create! file: uploaded_io
+      flash[:notice] = "Файл удачно загружен, в очереди на импорт в базу"
+      redirect_to edit_pharmacy_url pharmacy
     else
-      pharmacy.errors.add :file, 'Загрузите файл в формате .xlsx'
+      pharmacy.errors.add :file, 
+        "Загрузите файл в формате #{DrugsImportWorker::AVAILABLE_EXTENTIONS.join(',')}"
+      render :edit
     end
 
-    render :edit
   rescue ImportService::Error => err
+    flash[:error] = err.message
+    render :edit
   end
 
   private

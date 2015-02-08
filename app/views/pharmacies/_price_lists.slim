@@ -1,0 +1,31 @@
+h3 Загруженные каталоги (#{pharmacy.price_lists.count})
+
+table.table.table-concended.table-striped.table-bordered
+  thead
+    tr
+      th Дата загрузки
+      th Файл
+      th Статус
+      th Дата последнего изменения
+      th Загружено позиций
+      th Ошибок
+  tbody
+    - @pharmacy.price_lists.ordered.each do |pl|
+      tr
+        td= l pl.created_at, format: :short
+        th= pl.filename
+        th= pl.job_status
+        /- case pl.state.to_sym
+          /- when :queued
+            /td В очереди #{pl.job_id}
+          /- when :importing
+            /td Загружается
+          /- when :done
+            /td Загружено
+          /- else
+            /td '???'
+        td= l pl.updated_at, format: :short
+        td= pl.drugs_count
+        td= pl.errors_count
+
+

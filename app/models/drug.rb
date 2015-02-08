@@ -5,9 +5,9 @@ class Drug < ActiveRecord::Base
 
   validates :price, presence: true
   validates :name, presence: true
+  validates :stock_quantity, presence: true, numericality: true
   #validates :producer, presence: true
   #validates :country, presence: true
-  validates :stock_quantity, presence: true, numericality: true
 
   def self.create_from_elastic object
     attr = object.attributes
@@ -20,6 +20,17 @@ class Drug < ActiveRecord::Base
 
   def to_s
     name
+  end
+
+  # При импорте из CSV приходит строка
+  def price= value
+    value.sub! ',', '.' if value.is_a?(String)
+    super value
+  end
+
+  def stock_quantity= value
+    value.sub! ',', '.' if value.is_a?(String)
+    super value
   end
 
   def name
