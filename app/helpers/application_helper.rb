@@ -1,5 +1,24 @@
 module ApplicationHelper
 
+  def price_list_row_html_class pl
+    case pl.job.status
+    when 'working'
+      return 'info'
+    when 'complete'
+      return pl.errors_count>0 ?  'warning' : 'success'
+    when 'queued'
+      return 'active'
+    when 'failed'
+      return 'danger'
+    else
+      ''
+    end
+  end
+
+  def human_time time
+    l time, format: :short if time.present?
+  end
+
   def sortable_column name, key
     key = key.to_s
     dsf = drugs_search_form.clone

@@ -6,7 +6,7 @@ class ImportService
   # http://ruby-doc.org/stdlib-1.9.3/libdoc/csv/rdoc/CSV.html
   #
   MAX_ERRORS = 20
-  EXTENTIONS=['.xlsx', '.xls', '.csv']
+  EXTENTIONS=['.xlsx', '.zip', '.xls', '.csv']
   FIELDS = {
     name: 'Наименование товара',
     price: 'Цена',
@@ -24,18 +24,27 @@ class ImportService
 
   attribute :pharmacy, Pharmacy, required: true
   attribute :file,     ActionDispatch::Http::UploadedFile, required: true
+  attribute :worker,   DrugsImportWorker
   attribute :columns,  Hash,  default: {}
   attribute :errors,   Array, default: []
 
   def perform
+  end
+
+  private
+
+  def perform_roo
     detect_columns
 
     drugs = []
+
+    worker.try :total, roo.last_row
 
     time_start = Time.now
     Chewy.strategy(:atomic) do
       pharmacy.transaction do 
         (first_row..roo.last_row).each do |row_num|
+          worker.try :at, row_num
           begin
             drugs << import_row( roo.row row_num )
           rescue => err
@@ -45,6 +54,7 @@ class ImportService
         end
         raise Error, errors if errors.any?
 
+        worker.try :at, roo.last_row, 'Удаляю старые товары'
         deletes = pharmacy.drugs.where('updated_at<?', time_start)
         ids = deletes.pluck(:id)
         DrugsIndex::Drug.filter(term: { id: ids }).delete_all

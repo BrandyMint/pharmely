@@ -13,26 +13,20 @@ class PriceList < ActiveRecord::Base
 
   after_commit :import_file, on: :create
 
-  def importing!
-    update_attribute :state, :importing
+  def start!
+    update_attributes! state: :importing, start_at: Time.now
   end
 
-  def done!
-    update_attribute :state, :done
+  def finish!
+    update_attributes! state: :done, finish_at: Time.now
   end
 
   def filename
     file.file.filename
   end
 
-  def job_status
-    job['status']
-  rescue
-    '-'
-  end
-
   def job
-    Sidekiq::Status::get_all job_id if job_id.present?
+    Hashie::Mash.new Sidekiq::Status::get_all job_id if job_id.present?
   end
 
   private

@@ -1,31 +1,34 @@
 h3 Загруженные каталоги (#{pharmacy.price_lists.count})
 
-table.table.table-concended.table-striped.table-bordered
+table.table.table-concended
   thead
     tr
       th Дата загрузки
       th Файл
       th Статус
-      th Дата последнего изменения
       th Загружено позиций
       th Ошибок
   tbody
     - @pharmacy.price_lists.ordered.each do |pl|
-      tr
+      tr class=price_list_row_html_class(pl)
         td= l pl.created_at, format: :short
-        th= pl.filename
-        th= pl.job_status
-        /- case pl.state.to_sym
-          /- when :queued
-            /td В очереди #{pl.job_id}
-          /- when :importing
-            /td Загружается
-          /- when :done
-            /td Загружено
-          /- else
-            /td '???'
-        td= l pl.updated_at, format: :short
-        td= pl.drugs_count
+        td= pl.filename
+        td
+          - case pl.job.status
+          - when 'working'
+            | В процессе с&nbsp;
+            = human_time pl.start_at
+          - when 'complete'
+            | Выполнен&nbsp;
+            = human_time pl.finish_at
+            i= " (#{distance_of_time_in_words pl.finish_at, pl.start_at rescue '-'})"
+          - else
+            = pl.job.status
+        td
+          - if pl.job.status=='working'
+            = " (#{pl.job.at} из #{pl.job.total}) #{pl.job.message}"
+          - else
+            = pl.drugs_count
         td= pl.errors_count
 
 
