@@ -46,3 +46,4 @@ vendor/assets/components/
 ansible/librarian_roles/*
 ansible/tmp/*
 db/*.sql
+config/deploy/deploy.rb
