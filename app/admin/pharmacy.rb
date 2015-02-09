@@ -1,6 +1,4 @@
-
 ActiveAdmin.register Pharmacy do
-  require 'pry'
   menu label: 'Точки продаж'
 
   index do
