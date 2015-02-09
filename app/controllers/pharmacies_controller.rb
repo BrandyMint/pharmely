@@ -13,6 +13,10 @@ class PharmaciesController < ApplicationController
   end
 
   def update
+    upload
+  end
+
+  def upload
     filename = uploaded_io.original_filename
     if DrugsImportWorker::AVAILABLE_EXTENTIONS.include? File.extname(filename)
       pharmacy.price_lists.create! file: uploaded_io
@@ -32,7 +36,7 @@ class PharmaciesController < ApplicationController
   private
 
   def uploaded_io
-    params[:pharmacy]['file']
+    params[:file] || params[:pharmacy]['file']
   end
 
   def company

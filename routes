@@ -1,0 +1,59 @@
+                       Prefix Verb   URI Pattern                              Controller#Action
+                   admin_root GET    /admin(.:format)                         admin/dashboard#index
+     batch_action_admin_drugs POST   /admin/drugs/batch_action(.:format)      admin/drugs#batch_action
+                  admin_drugs GET    /admin/drugs(.:format)                   admin/drugs#index
+                              POST   /admin/drugs(.:format)                   admin/drugs#create
+               new_admin_drug GET    /admin/drugs/new(.:format)               admin/drugs#new
+              edit_admin_drug GET    /admin/drugs/:id/edit(.:format)          admin/drugs#edit
+                   admin_drug GET    /admin/drugs/:id(.:format)               admin/drugs#show
+                              PATCH  /admin/drugs/:id(.:format)               admin/drugs#update
+                              PUT    /admin/drugs/:id(.:format)               admin/drugs#update
+                              DELETE /admin/drugs/:id(.:format)               admin/drugs#destroy
+        import_admin_pharmacy GET    /admin/pharmacies/:id/import(.:format)   admin/pharmacies#import
+batch_action_admin_pharmacies POST   /admin/pharmacies/batch_action(.:format) admin/pharmacies#batch_action
+             admin_pharmacies GET    /admin/pharmacies(.:format)              admin/pharmacies#index
+                              POST   /admin/pharmacies(.:format)              admin/pharmacies#create
+           new_admin_pharmacy GET    /admin/pharmacies/new(.:format)          admin/pharmacies#new
+          edit_admin_pharmacy GET    /admin/pharmacies/:id/edit(.:format)     admin/pharmacies#edit
+               admin_pharmacy GET    /admin/pharmacies/:id(.:format)          admin/pharmacies#show
+                              PATCH  /admin/pharmacies/:id(.:format)          admin/pharmacies#update
+                              PUT    /admin/pharmacies/:id(.:format)          admin/pharmacies#update
+                              DELETE /admin/pharmacies/:id(.:format)          admin/pharmacies#destroy
+              admin_dashboard GET    /admin/dashboard(.:format)               admin/dashboard#index
+ batch_action_admin_companies POST   /admin/companies/batch_action(.:format)  admin/companies#batch_action
+              admin_companies GET    /admin/companies(.:format)               admin/companies#index
+                              POST   /admin/companies(.:format)               admin/companies#create
+            new_admin_company GET    /admin/companies/new(.:format)           admin/companies#new
+           edit_admin_company GET    /admin/companies/:id/edit(.:format)      admin/companies#edit
+                admin_company GET    /admin/companies/:id(.:format)           admin/companies#show
+                              PATCH  /admin/companies/:id(.:format)           admin/companies#update
+                              PUT    /admin/companies/:id(.:format)           admin/companies#update
+                              DELETE /admin/companies/:id(.:format)           admin/companies#destroy
+               admin_comments GET    /admin/comments(.:format)                admin/comments#index
+                              POST   /admin/comments(.:format)                admin/comments#create
+                admin_comment GET    /admin/comments/:id(.:format)            admin/comments#show
+                  sidekiq_web        /sidekiq                                 Sidekiq::Web
+                         root GET    /                                        drugs#welcome
+              upload_pharmacy POST   /pharmacies/:id/upload(.:format)         pharmacies#upload
+                   pharmacies GET    /pharmacies(.:format)                    pharmacies#index
+                edit_pharmacy GET    /pharmacies/:id/edit(.:format)           pharmacies#edit
+                     pharmacy GET    /pharmacies/:id(.:format)                pharmacies#show
+                    companies GET    /companies(.:format)                     companies#index
+                      company GET    /companies/:id(.:format)                 companies#show
+                        drugs GET    /drugs(.:format)                         drugs#index
+                         drug GET    /drugs/:id(.:format)                     drugs#show
+                         cart POST   /cart(.:format)                          cart#create
+                     new_cart GET    /cart/new(.:format)                      cart#new
+                    edit_cart GET    /cart/edit(.:format)                     cart#edit
+                              GET    /cart(.:format)                          cart#show
+                              PATCH  /cart(.:format)                          cart#update
+                              PUT    /cart(.:format)                          cart#update
+                              DELETE /cart(.:format)                          cart#destroy
+                   cart_items GET    /cart_items(.:format)                    cart_items#index
+                              POST   /cart_items(.:format)                    cart_items#create
+                new_cart_item GET    /cart_items/new(.:format)                cart_items#new
+               edit_cart_item GET    /cart_items/:id/edit(.:format)           cart_items#edit
+                    cart_item GET    /cart_items/:id(.:format)                cart_items#show
+                              PATCH  /cart_items/:id(.:format)                cart_items#update
+                              PUT    /cart_items/:id(.:format)                cart_items#update
+                              DELETE /cart_items/:id(.:format)                cart_items#destroy

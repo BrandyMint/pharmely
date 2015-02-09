@@ -19,11 +19,12 @@
     p Классический http multipart upload post-запросом
     p Авторизация: http basic
     pre
-      | URL: #{pharmacy_url(@pharmacy)}
+      | URL: #{upload_pharmacy_url(@pharmacy)}
       br
-      | method: POST
+      | Method: POST
       br
       | Content-Type: multipart/form-data
+      | Параметр: file
 
 
 = render 'price_lists', pharmacy: @pharmacy
