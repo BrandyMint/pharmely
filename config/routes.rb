@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'drugs#welcome'
 
-  resources :pharmacies, only: [:index, :edit, :show] do
+  resources :pharmacies, only: [:index, :edit, :update, :show] do
     member do
       post :upload
     end

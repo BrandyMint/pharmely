@@ -1,6 +1,10 @@
 class PharmaciesController < ApplicationController
   include Authentication
 
+  skip_before_action :verify_authenticity_token #, only: [:update]
+  protect_from_forgery with: :null_session
+  #protect_from_forgery except: [:update]
+
   helper_method :pharmacy
   before_action :authenticate, only: [:edit]
 
