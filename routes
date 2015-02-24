@@ -34,10 +34,14 @@ batch_action_admin_pharmacies POST   /admin/pharmacies/batch_action(.:format) ad
                 admin_comment GET    /admin/comments/:id(.:format)            admin/comments#show
                   sidekiq_web        /sidekiq                                 Sidekiq::Web
                          root GET    /                                        drugs#welcome
+          grape_swagger_rails        /api                                     GrapeSwaggerRails::Engine
+                          api        /api                                     API
               upload_pharmacy POST   /pharmacies/:id/upload(.:format)         pharmacies#upload
                    pharmacies GET    /pharmacies(.:format)                    pharmacies#index
                 edit_pharmacy GET    /pharmacies/:id/edit(.:format)           pharmacies#edit
                      pharmacy GET    /pharmacies/:id(.:format)                pharmacies#show
+                              PATCH  /pharmacies/:id(.:format)                pharmacies#update
+                              PUT    /pharmacies/:id(.:format)                pharmacies#update
                     companies GET    /companies(.:format)                     companies#index
                       company GET    /companies/:id(.:format)                 companies#show
                         drugs GET    /drugs(.:format)                         drugs#index
@@ -57,3 +61,6 @@ batch_action_admin_pharmacies POST   /admin/pharmacies/batch_action(.:format) ad
                               PATCH  /cart_items/:id(.:format)                cart_items#update
                               PUT    /cart_items/:id(.:format)                cart_items#update
                               DELETE /cart_items/:id(.:format)                cart_items#destroy
+
+Routes for GrapeSwaggerRails::Engine:
+  root GET  /           grape_swagger_rails/application#index

@@ -2,7 +2,7 @@
 class DrugsImportWorker
   include Sidekiq::Worker
   include Sidekiq::Status::Worker 
-  AVAILABLE_EXTENTIONS = ImportService::EXTENTIONS
+  AVAILABLE_EXTENTIONS = ImportFileService::EXTENTIONS
 
   #sidekiq_options unique: true,
     #unique_args: ->(args) { [ args.first ] }
@@ -29,7 +29,7 @@ class DrugsImportWorker
     drugs_count, errors_count = ImportService.
       new(pharmacy: pl.pharmacy, 
           worker: self,
-          file: pl.file.file).
+          files: [pl.file.file]).
       perform
     pl.update_columns drugs_count: drugs_count, errors_count: errors_count
   ensure

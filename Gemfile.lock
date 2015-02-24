@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/BrandyMint/grape-swagger-rails.git
+  revision: 51cba7386edf66721383eb2d4a2c764da97bea7e
+  specs:
+    grape-swagger-rails (0.0.10)
+      grape-swagger
+      railties (>= 3.2.12)
+
+GIT
   remote: git://github.com/activeadmin/activeadmin.git
   revision: b3a9f4b3e4051447d011c59649a73f876989a199
   specs:
@@ -24,6 +32,21 @@ GIT
       activesupport (>= 2.3.2)
 
 GIT
+  remote: git://github.com/intridea/grape.git
+  revision: 2d11629c8532f0a28f2a912891565623672c54e7
+  specs:
+    grape (0.10.2)
+      activesupport
+      builder
+      hashie (>= 2.1.0)
+      multi_json (>= 1.3.2)
+      multi_xml (>= 0.5.2)
+      rack (>= 1.3.0)
+      rack-accept
+      rack-mount
+      virtus (>= 1.0.0)
+
+GIT
   remote: git://github.com/plataformatec/simple_form.git
   revision: 7abd871b520b24d10d676338801f49004398acd4
   specs:
@@ -47,6 +70,14 @@ GIT
     roo (2.0.0)
       nokogiri
       rubyzip (>= 1.0.0)
+
+GIT
+  remote: git://github.com/tim-vandecasteele/grape-swagger.git
+  revision: c9fb720bc9e191dd4faa47237425a33edb899552
+  specs:
+    grape-swagger (0.9.1)
+      grape (>= 0.8.0)
+      grape-entity
 
 GIT
   remote: git://github.com/tobiassvn/sidetiq.git
@@ -198,6 +229,11 @@ GEM
     formtastic_i18n (0.1.1)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
+    grape-entity (0.4.3)
+      activesupport
+      multi_json (>= 1.3.2)
+    grape-rails-routes (1.0)
+      rails (>= 4.1.4)
     guard (2.11.1)
       formatador (>= 0.2.4)
       listen (~> 2.7)
@@ -270,6 +306,7 @@ GEM
     mini_portile (0.6.2)
     minitest (5.5.1)
     multi_json (1.10.1)
+    multi_xml (0.5.5)
     multipart-post (2.0.0)
     nenv (0.2.0)
     net-scp (1.2.1)
@@ -299,6 +336,10 @@ GEM
     pry-syntax-hacks (0.0.6)
       pry (>= 0.9.8)
     rack (1.6.0)
+    rack-accept (0.4.5)
+      rack (>= 0.4)
+    rack-mount (0.8.3)
+      rack (>= 1.0.0)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -487,6 +528,11 @@ DEPENDENCIES
   draper
   enumerize
   factory_girl_rails
+  grape!
+  grape-entity
+  grape-rails-routes
+  grape-swagger!
+  grape-swagger-rails!
   guard
   guard-bundler
   guard-ctags-bundler

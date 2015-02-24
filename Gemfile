@@ -3,6 +3,12 @@ source 'https://rubygems.org'
 gem 'sorcery'
 gem 'authority'
 
+gem 'grape', github: 'intridea/grape'
+gem 'grape-swagger', github: 'tim-vandecasteele/grape-swagger'
+gem 'grape-swagger-rails', github: 'BrandyMint/grape-swagger-rails'
+gem 'grape-rails-routes'
+gem 'grape-entity'
+
 gem 'hashie'
 
 gem "bugsnag"

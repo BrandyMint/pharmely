@@ -6,7 +6,7 @@ class PharmaciesController < ApplicationController
   #protect_from_forgery except: [:update]
 
   helper_method :pharmacy
-  before_action :authenticate, only: [:edit]
+  before_action :authenticate, only: [:edit, :update]
 
   def show
     render locals: { drugs_search_results: query.result, drugs_search_form: drugs_search_form }
@@ -16,15 +16,15 @@ class PharmaciesController < ApplicationController
     @pharmacies = Pharmacy.ordered.page params[:page]
   end
 
-  def update
-    upload
+  def edit
+    render locals: { pharmacy: pharmacy }
   end
 
-  def upload
+  def update
     filename = uploaded_io.original_filename
     if DrugsImportWorker::AVAILABLE_EXTENTIONS.include? File.extname(filename)
       pharmacy.price_lists.create! file: uploaded_io
-      flash[:notice] = "Файл удачно загружен, в очереди на импорт в базу"
+      flash[:notice] = "Файл удачно загружен, в очередь на импорт в базу"
       redirect_to edit_pharmacy_url pharmacy
     else
       pharmacy.errors.add :file, 
@@ -40,7 +40,7 @@ class PharmaciesController < ApplicationController
   private
 
   def uploaded_io
-    params[:file] || params[:pharmacy]['file']
+    params[:file] || params[:pharmacy]['file'] rescue nil
   end
 
   def company

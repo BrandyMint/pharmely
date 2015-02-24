@@ -5,7 +5,7 @@ module ApplicationHelper
     when 'working'
       return 'info'
     when 'complete'
-      return pl.errors_count>0 ?  'warning' : 'success'
+      return pl.errors_count.to_i>0 ?  'warning' : 'success'
     when 'queued'
       return 'active'
     when 'failed'

@@ -3,23 +3,27 @@ include ActionDispatch::TestProcess
 describe ImportService do
   let!(:pharmacy) { create :pharmacy }
 
-  context '.zip.csv' do
-    let!(:file)     { fixture_file_upload 'pricelist.csv.zip' }
+  #before :all do
+    #DrugsIndex.purge
+  #end
 
-    subject { described_class.new(pharmacy: pharmacy, file: file).perform }
+  #context '.zip.csv' do
+    #let!(:file)     { fixture_file_upload 'pricelist.csv.zip' }
 
-    it do
-      expect( subject ).to have(198).items
-    end
-  end
+    #subject { described_class.new(pharmacy: pharmacy, files: [file]).perform }
+
+    #it do
+      #expect( subject ).to eq [198,0]
+    #end
+  #end
 
   context 'csv' do
-    let!(:file)     { fixture_file_upload 'pricelist.csv' }
+    let!(:file)     { fixture_file_upload 'price.csv' }
 
-    subject { described_class.new(pharmacy: pharmacy, file: file).perform }
+    subject { described_class.new(pharmacy: pharmacy, files: [file]).perform }
 
     it do
-      expect( subject ).to have(198).items
+      expect( subject ).to eq [25,0]
     end
   end
 
@@ -29,17 +33,17 @@ describe ImportService do
     #subject { described_class.new(pharmacy: pharmacy, file: file).perform }
 
     #it do
-      #expect( subject ).to have(37658).items
+      #expect( subject ).to eq [37658, 0]
     #end
   #end
 
   context 'xlsx' do
     let!(:file)     { fixture_file_upload 'pricelist.xlsx' }
 
-    subject { described_class.new(pharmacy: pharmacy, file: file).perform }
+    subject { described_class.new(pharmacy: pharmacy, files: [file]).perform }
 
     it do
-      expect( subject ).to have(43).items
+      expect( subject ).to eq [43, 0]
     end
   end
 end

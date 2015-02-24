@@ -10,12 +10,16 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'drugs#welcome'
 
+  #scope :subdomain => 'api', constraints: { subdomain: 'api' } do
+  mount GrapeSwaggerRails::Engine => '/api'
+  mount API => "/api"
+  #end
+
   resources :pharmacies, only: [:index, :edit, :update, :show] do
     member do
       post :upload
     end
   end
-
   resources :companies, only: [:index, :show]
   resources :drugs, only: [:index, :show]
 

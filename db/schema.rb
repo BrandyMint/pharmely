@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150208193124) do
+ActiveRecord::Schema.define(version: 20150224143948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,29 @@ ActiveRecord::Schema.define(version: 20150208193124) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "bunch_files", force: :cascade do |t|
+    t.integer  "bunch_id"
+    t.string   "file",       null: false
+    t.integer  "number",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "bunch_files", ["bunch_id", "number"], name: "index_bunch_files_on_bunch_id_and_number", unique: true, using: :btree
+  add_index "bunch_files", ["bunch_id"], name: "index_bunch_files_on_bunch_id", using: :btree
+
+  create_table "bunches", force: :cascade do |t|
+    t.integer  "pharmacy_id"
+    t.string   "key",         null: false
+    t.string   "type"
+    t.integer  "max",         null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "bunches", ["pharmacy_id", "key"], name: "index_bunches_on_pharmacy_id_and_key", unique: true, using: :btree
+  add_index "bunches", ["pharmacy_id"], name: "index_bunches_on_pharmacy_id", using: :btree
+
   create_table "companies", force: :cascade do |t|
     t.string   "title",                            null: false
     t.string   "logo"
@@ -85,6 +108,7 @@ ActiveRecord::Schema.define(version: 20150208193124) do
     t.decimal  "lat"
     t.integer  "company_id", null: false
     t.string   "work_time"
+    t.string   "api_key"
   end
 
   add_index "pharmacies", ["company_id"], name: "index_pharmacies_on_company_id", using: :btree
@@ -115,6 +139,8 @@ ActiveRecord::Schema.define(version: 20150208193124) do
   add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
+  add_foreign_key "bunch_files", "bunches"
+  add_foreign_key "bunches", "pharmacies"
   add_foreign_key "drugs", "pharmacies"
   add_foreign_key "price_lists", "pharmacies"
 end

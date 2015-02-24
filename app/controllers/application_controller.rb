@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_admin_user!
     authenticate_or_request_with_http_basic("admin access") do |name, password|
-      name == Secrets.admin.name && password == Secrets.admin.password
+      Secrets.admin.present? && name == Secrets.admin.name && password == Secrets.admin.password
     end
   end
 
