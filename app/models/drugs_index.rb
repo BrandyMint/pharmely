@@ -1,6 +1,6 @@
 
 class DrugsIndex < Chewy::Index
-  define_type Drug do
+  define_type Drug.includes(:pharmacy) do
     field :id
     field :name
     field :producer
