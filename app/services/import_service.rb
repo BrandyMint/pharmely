@@ -4,7 +4,7 @@ class ImportService
 
   attribute :pharmacy, Pharmacy, required: true
   attribute :files,    Array[ActionDispatch::Http::UploadedFile], required: true
-  attribute :worker,   DrugsImportWorker
+  attribute :worker,   PriceListWorker
   attribute :errors,   Array, default: []
 
   def perform
@@ -45,3 +45,10 @@ class ImportService
   end
 
 end
+#Zip::File.open(file.path) do |zip|
+  #binding.pry
+  ##if zip.file
+  ##zip.dir.foreach(path) do |filename|
+    ##ret = process_zipfile_packed(zip, tmpdir, path + filename)
+  ##end
+#end

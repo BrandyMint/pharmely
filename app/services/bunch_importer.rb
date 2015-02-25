@@ -1,11 +1,11 @@
 class BunchImporter
-
   include Virtus.model strict: true
-  attribute :pharmacy, Pharmacy, requried: true
-  attribute :bunch_key, String, required: true
-  attribute :max,     Integer, requried: true
-  attribute :current, Integer, requried: true
-  attribute :type,    String, default: 'csv'
+
+  attribute :pharmacy,  Pharmacy, requried: true
+  attribute :bunch_key, String,   required: true
+  attribute :max,       Integer,  requried: true
+  attribute :current,   Integer,  requried: true
+  attribute :type,      String,   default: 'csv'
 
   def catch_file content
     File.write path, content

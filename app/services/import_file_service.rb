@@ -24,7 +24,7 @@ class ImportFileService
 
   attribute :pharmacy, Pharmacy, required: true
   attribute :file,     ActionDispatch::Http::UploadedFile, required: true
-  attribute :worker,   DrugsImportWorker
+  attribute :worker,   PriceListWorker
   attribute :columns,  Hash,  default: {}
   attribute :errors,   Array, default: []
 

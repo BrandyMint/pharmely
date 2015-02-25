@@ -13,12 +13,13 @@ class Api_v1::All < Grape::API
     post :upload do
       begin
         pharmacy = Pharmacy.find_by_key params[:key]
-        BunchImporter.new(pharmacy: pharmacy, 
-                          bunch_key: params[:bunch_key], 
-                          max: params[:max], 
-                          type: params[:type], 
-                          current: params[:currenty]).
-        catch_file env['rack.input']
+        BunchImporter.
+          new(pharmacy: pharmacy, 
+              bunch_key: params[:bunch_key], 
+              max: params[:max], 
+              type: params[:type], 
+              current: params[:currenty]).
+          catch_file env['rack.input']
       rescue ActiveRecord::RecordNotFound
         status 403
         "no such pharmacy"

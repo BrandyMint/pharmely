@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150224143948) do
+ActiveRecord::Schema.define(version: 20150225212446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,11 +62,18 @@ ActiveRecord::Schema.define(version: 20150224143948) do
 
   create_table "bunches", force: :cascade do |t|
     t.integer  "pharmacy_id"
-    t.string   "key",         null: false
+    t.string   "key",                              null: false
     t.string   "type"
-    t.integer  "max",         null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "max",                              null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "state",        default: "loading", null: false
+    t.integer  "drugs_count"
+    t.integer  "errors_count"
+    t.text     "results"
+    t.string   "job_id"
+    t.datetime "start_at"
+    t.datetime "finish_at"
   end
 
   add_index "bunches", ["pharmacy_id", "key"], name: "index_bunches_on_pharmacy_id_and_key", unique: true, using: :btree

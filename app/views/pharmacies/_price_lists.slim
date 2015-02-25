@@ -1,4 +1,6 @@
-h3 Загруженные каталоги (#{pharmacy.price_lists.count})
+h3
+  = title 
+  = "(#{list.count})"
 
 table.table.table-concended
   thead
@@ -9,26 +11,12 @@ table.table.table-concended
       th Загружено позиций
       th Ошибок
   tbody
-    - @pharmacy.price_lists.ordered.each do |pl|
-      tr class=price_list_row_html_class(pl)
-        td= l pl.created_at, format: :short
-        td= pl.filename
-        td
-          - case pl.job.status
-          - when 'working'
-            | В процессе с&nbsp;
-            = human_time pl.start_at
-          - when 'complete'
-            | Выполнен&nbsp;
-            = human_time pl.finish_at
-            i= " (#{distance_of_time_in_words pl.finish_at, pl.start_at rescue '-'})"
-          - else
-            = pl.job.status
-        td
-          - if pl.job.status=='working'
-            = " (#{pl.job.at} из #{pl.job.total}) #{pl.job.message}"
-          - else
-            = pl.drugs_count
-        td= pl.errors_count
+    - list.ordered.each do |model|
+      tr class=price_list_row_html_class(model)
+        td= l model.created_at, format: :short
+        td= model.filename
+        td= job_state model
+        td= drugs_count model
+        td= model.errors_count
 
 

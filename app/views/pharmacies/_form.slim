@@ -1,0 +1,9 @@
+h2 Загрузка каталога
+= link_to 'Пример таблицы для загрузки', 'https://docs.google.com/spreadsheets/d/1nqeLMCIG0la0b2efO8IuCpviE1XZ2T1tQ26g-Jy84ss/edit?usp=sharing', target: '_blank'
+
+= simple_form_for pharmacy, html: {multipart: true} do |f|
+  = f.error_notification
+  = f.input :file, as: :file, label: 'Файл в формате .xlsx или .csv'
+
+  = f.button :submit, "Зарузить", class: 'btn-default'
+

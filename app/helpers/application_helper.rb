@@ -1,5 +1,26 @@
 module ApplicationHelper
 
+  def drugs_count model
+    if model.job.status=='working'
+      " (#{model.job.at} из #{model.job.total}) #{model.job.message}"
+    else
+      model.drugs_count
+    end
+  end
+
+  def job_state model
+     case model.job.status
+     when 'working'
+      "В процессе с&nbsp;#{human_time b.start_at}"
+     when 'combete'
+      ("Выполнен&nbsp;#{human_time b.finish_at}"+
+       "<i>(#{distance_of_time_in_words b.finish_at, b.start_at rescue '-'})</i>").
+      html_safe
+     else
+      b.job.status
+     end
+  end
+
   def price_list_row_html_class pl
     case pl.job.status
     when 'working'

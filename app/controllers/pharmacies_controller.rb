@@ -22,13 +22,13 @@ class PharmaciesController < ApplicationController
 
   def update
     filename = uploaded_io.original_filename
-    if DrugsImportWorker::AVAILABLE_EXTENTIONS.include? File.extname(filename)
+    if ImportFileService::EXTENTIONS.include? File.extname(filename)
       pharmacy.price_lists.create! file: uploaded_io
       flash[:notice] = "Файл удачно загружен, в очередь на импорт в базу"
       redirect_to edit_pharmacy_url pharmacy
     else
       pharmacy.errors.add :file, 
-        "Загрузите файл в формате #{DrugsImportWorker::AVAILABLE_EXTENTIONS.join(',')}"
+        "Загрузите файл в формате #{ImportFileService::EXTENTIONS.join(',')}"
       render :edit
     end
 
