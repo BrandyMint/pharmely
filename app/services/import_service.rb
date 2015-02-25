@@ -4,7 +4,7 @@ class ImportService
 
   attribute :pharmacy, Pharmacy, required: true
   attribute :files,    Array[ActionDispatch::Http::UploadedFile], required: true
-  attribute :worker,   PriceListWorker
+  attribute :worker
   attribute :errors,   Array, default: []
 
   def perform

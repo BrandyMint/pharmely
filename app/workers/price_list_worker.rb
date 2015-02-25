@@ -1,5 +1,5 @@
 # http://www.rubydoc.info/gems/sidekiq-dynamic-queues/0.6.0
-class PriceListImportWorker
+class PriceListWorker
   include Sidekiq::Worker
   include Sidekiq::Status::Worker 
 
