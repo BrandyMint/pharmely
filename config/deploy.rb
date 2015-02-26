@@ -49,7 +49,7 @@ namespace :deploy do
           raise StandardError, 'Не получилось запустить unicorn. Читайте логи выше.'
         end
       end
-      on roles(:sidekiq), in: :sequence, wait: 5 do
+      on roles(:web), in: :sequence, wait: 5 do
         #execute "restart #{sidekiqapp} index=1 || start #{sidekiqapp} index=1"
         execute "restart sidekiq-manager || start sidekiq-manager"
       end
