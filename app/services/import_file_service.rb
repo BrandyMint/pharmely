@@ -13,7 +13,7 @@ class ImportFileService
     producer: 'Производитель',
     stock_quantity: 'Остаток',
     country: 'Страна',
-    article: 'артикул',
+    article: 'идентификатор',
     barcodes: 'штрих',
     unit:    'измерения'
   }
@@ -54,14 +54,10 @@ class ImportFileService
     return if row[columns[:name]]=='Итого'
     attrs = {}
     columns.each do |key, index|
-      attrs[key] = escape row[index]
+      attrs[key] = row[index]
     end
     Rails.logger.debug "Import row: #{attrs}"
     pharmacy.drugs.create! attrs
-  end
-
-  def escape str
-    str.sub '/', ''
   end
 
   def detect_columns
@@ -75,6 +71,9 @@ class ImportFileService
     unknown_columns = REQUIRED_FIELDS - columns.keys
 
     raise_error "Не устовлены обязательные колонки: #{unknown_columns}" if unknown_columns.any?
+  rescue => err
+    binding.pry if Rails.env.development?
+    raise_error "Ошибка при детектировании заголовка: #{err}"
   end
 
   def raise_error message = nil
@@ -90,7 +89,7 @@ class ImportFileService
     #value.encode('ibm850').force_encoding('cp1251').encode('utf-8') 
     ext = File.extname(file.original_filename)
     if ext=='.csv'
-      @roo ||= Roo::CSV.new file.path, csv_options: {encoding: Encoding::CP1251}
+      @roo ||= Roo::CSV.new file.path, csv_options: {col_sep: '¤', encoding: Encoding::CP1251}
     else
       @roo ||= Roo::Spreadsheet.open file.path, extension: ext
     end

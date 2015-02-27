@@ -4,13 +4,17 @@ class Bunch < ActiveRecord::Base
 
   scope :ordered, -> { order 'id desc' }
 
-  has_many :bunch_files
+  has_many :bunch_files, dependent: :delete_all
 
   validates :max, presence: true
   validates :key, presence: true
 
   def complete?
     max>0 && bunch_files.count == max
+  end
+
+  def files
+    bunch_files.map { |bf| bf.file.file }
   end
 
   def files_size

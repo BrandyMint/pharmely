@@ -8,12 +8,12 @@ module WorkerOwner
     Hashie::Mash.new Sidekiq::Status::get_all job_id if job_id.present?
   end
 
-  def import_drugs worker
+  def import_drugs worker=nil
     start!
     drugs_count, errors_count = ImportService.
       new(pharmacy: pharmacy, 
           worker: worker,
-          files: files)
+          files: files).
       perform
     update_columns drugs_count: drugs_count, errors_count: errors_count
   ensure
