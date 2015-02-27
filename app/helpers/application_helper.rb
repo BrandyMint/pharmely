@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include DrugsHelper
 
   def ert_url
     'https://github.com/BrandyMint/apteka_export_1c/raw/master/apteki.ert'
