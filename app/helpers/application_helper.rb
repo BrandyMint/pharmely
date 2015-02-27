@@ -17,13 +17,13 @@ module ApplicationHelper
     return 'не запущен' unless model.job.present?
      case model.job.status
      when 'working'
-      "В процессе с&nbsp;#{human_time b.start_at}"
-     when 'combete'
-      ("Выполнен&nbsp;#{human_time b.finish_at}"+
-       "<i>(#{distance_of_time_in_words b.finish_at, b.start_at rescue '-'})</i>").
+      "В процессе с&nbsp;#{human_time model.start_at}"
+     when 'complete'
+      ("Выполнен&nbsp;#{human_time model.finish_at}"+
+       "<i>(#{distance_of_time_in_words model.finish_at, model.start_at rescue '-'})</i>").
       html_safe
      else
-      b.job.status
+      model.job.status
      end
   end
 
