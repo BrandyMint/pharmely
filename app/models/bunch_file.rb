@@ -7,4 +7,8 @@ class BunchFile < ActiveRecord::Base
 
   delegate :complete?, to: :bunch
 
+  def file_size
+    file.size
+  end
+
 end

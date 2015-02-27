@@ -1,6 +1,7 @@
 module ApplicationHelper
 
   def drugs_count model
+    return '' unless model.job.present?
     if model.job.status=='working'
       " (#{model.job.at} из #{model.job.total}) #{model.job.message}"
     else
@@ -9,6 +10,7 @@ module ApplicationHelper
   end
 
   def job_state model
+    return 'не запущен' unless model.job.present?
      case model.job.status
      when 'working'
       "В процессе с&nbsp;#{human_time b.start_at}"
@@ -22,6 +24,7 @@ module ApplicationHelper
   end
 
   def price_list_row_html_class pl
+    return 'danger' unless pl.job
     case pl.job.status
     when 'working'
       return 'info'

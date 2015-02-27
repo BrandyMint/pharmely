@@ -1,0 +1,22 @@
+h3
+  = title 
+  = "(#{list.count})"
+
+table.table.table-concended
+  thead
+    tr
+      th Дата загрузки
+      th Файл
+      th Статус
+      th Загружено позиций
+      th Ошибок
+  tbody
+    - list.ordered.each do |model|
+      tr class=price_list_row_html_class(model)
+        td= l model.created_at, format: :short
+        td= model.try :filename
+        td= job_state model
+        td= drugs_count model
+        td= model.errors_count
+
+

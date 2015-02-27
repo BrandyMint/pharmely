@@ -14,7 +14,7 @@ class Api_v1::All < Grape::API
     end
     post :upload do
       begin
-        pharmacy = Pharmacy.find_by_key params[:key]
+        pharmacy = Pharmacy.find_by_key params[:key].strip
         BunchImporter.
           new(pharmacy:  pharmacy, 
               bunch_key: params[:bunch_key], 

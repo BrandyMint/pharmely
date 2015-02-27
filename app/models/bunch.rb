@@ -13,6 +13,10 @@ class Bunch < ActiveRecord::Base
     max>0 && bunch_files.count == max
   end
 
+  def files_size
+    bunch_files.map(&:file_size).inject { |a,b| a+b }
+  end
+
   private
 
   def worker_class
