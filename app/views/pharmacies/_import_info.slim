@@ -1,13 +1,6 @@
 h3 Автоматическая загрузка каталога
-p Классический http multipart upload post-запросом
-p Авторизация: http basic
+= link_to 'Модуль выгрузки для 1С (.ert)', ert_url
 pre
-  | URL: #{upload_pharmacy_url(pharmacy)}
+  | Идентификатор аптеки: #{pharmacy.id}
   br
-  | Method: POST
-  br
-  | Content-Type: multipart/form-data
-  br
-  | Параметр: file
-
-
+  | Ключ: #{pharmacy.api_key}
