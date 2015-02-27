@@ -14,6 +14,7 @@
 --
 
 * https://github.com/BrandyMint/apteka_export_1c
+* https://github.com/BrandyMint/apteka_export_1c/blob/master/apteki.ert
 
 sidekiq
 -------

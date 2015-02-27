@@ -54,10 +54,14 @@ class ImportFileService
     return if row[columns[:name]]=='Итого'
     attrs = {}
     columns.each do |key, index|
-      attrs[key] = row[index]
+      attrs[key] = escape row[index]
     end
     Rails.logger.debug "Import row: #{attrs}"
     pharmacy.drugs.create! attrs
+  end
+
+  def escape str
+    str.sub '/', ''
   end
 
   def detect_columns
