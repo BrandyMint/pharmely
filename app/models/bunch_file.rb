@@ -3,6 +3,8 @@ class BunchFile < ActiveRecord::Base
 
   mount_uploader :file, PriceListUploader
 
+  scope :ordered, -> { order 'id asc' }
+
   #after_commit :queue_import, on: :create, if: :complete?
 
   delegate :complete?, to: :bunch

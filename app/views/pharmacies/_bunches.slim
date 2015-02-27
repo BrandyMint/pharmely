@@ -18,6 +18,10 @@ table.table.table-concended
           = "#{model.bunch_files.count} / #{model.max}"
           = "&nbsp;".html_safe
           = "(#{number_to_human_size model.files_size})"
+          ul
+            - model.bunch_files.ordered.each do |bf|
+              li
+                = link_to "#{bf.number} - #{number_to_human_size bf.file_size}", bf.file.url
         td= job_state model
         td= drugs_count model
         td= model.errors_count

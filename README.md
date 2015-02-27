@@ -10,6 +10,11 @@
 > bundle exec sidekiq
 
 
+1С
+--
+
+* https://github.com/BrandyMint/apteka_export_1c
+
 sidekiq
 -------
 
