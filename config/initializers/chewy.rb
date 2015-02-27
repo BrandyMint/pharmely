@@ -1,2 +1,2 @@
-Chewy.settings = {host: 'localhost:9200'}
 Chewy.logger = Rails.logger
+Chewy.transport_logger= Rails.logger

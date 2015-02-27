@@ -1,0 +1,10 @@
+development:
+  host: 10.0.3.248:9200
+  prefix: apteka_dev
+production:
+  host: localhost:9200
+  prefix: apteka_prod
+test:
+  host: localhost:9200
+  prefix: apteka_test<%= ENV['TEST_ENV_NUMBER'] %>
+

@@ -14,7 +14,7 @@ class Pharmacy < ActiveRecord::Base
   before_create :generate_api_key
 
   def self.find_by_key key
-    scoped.where(api_key: key).first!
+    where(api_key: key).first!
   end
 
   def to_s

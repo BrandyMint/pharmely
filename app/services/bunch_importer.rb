@@ -10,7 +10,10 @@ class BunchImporter
   def catch_file content
     File.write path, content
     file = Rack::Test::UploadedFile.new path, mime_type, true
-    bf = bunch.bunch_files.create! file: file, number: current
+
+    unless bf = bunch.bunch_files.where( number: current ).first
+      bf = bunch.bunch_files.create! file: file, number: current
+    end
 
     File.delete path
 
