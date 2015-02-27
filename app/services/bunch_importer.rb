@@ -8,7 +8,8 @@ class BunchImporter
   attribute :type,      String,   default: 'csv'
 
   def catch_file content
-    File.write path, content
+
+    File.open( path, 'wb') do |f| f.write content.read; end
     file = Rack::Test::UploadedFile.new path, mime_type, true
 
     unless bf = bunch.bunch_files.where( number: current ).first
