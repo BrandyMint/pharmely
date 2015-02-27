@@ -89,7 +89,9 @@ class ImportFileService
     #value.encode('ibm850').force_encoding('cp1251').encode('utf-8') 
     ext = File.extname(file.original_filename)
     if ext=='.csv'
-      @roo ||= Roo::CSV.new file.path, csv_options: {col_sep: '¤', encoding: Encoding::CP1251}
+      @roo ||= Roo::CSV.new file.path, csv_options: {col_sep:    '¤', # 253
+                                                     quote_char: '°', # 248
+                                                     encoding:   Encoding::CP1251}
     else
       @roo ||= Roo::Spreadsheet.open file.path, extension: ext
     end

@@ -4,7 +4,7 @@ class Bunch < ActiveRecord::Base
 
   scope :ordered, -> { order 'id desc' }
 
-  has_many :bunch_files, dependent: :delete_all
+  has_many :bunch_files, dependent: :destroy
 
   validates :max, presence: true
   validates :key, presence: true

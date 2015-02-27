@@ -1,0 +1,1 @@
+scp -r -P 246 pharmely@apteka.ws:/home/pharmely/apteka.ws/current/public/uploads/bunch_file/* public/uploads/bunch_file/

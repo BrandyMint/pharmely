@@ -16,6 +16,12 @@
 * https://github.com/BrandyMint/apteka_export_1c
 * https://github.com/BrandyMint/apteka_export_1c/blob/master/apteki.ert
 
+development
+-----------
+
+> bundle exec cap production assets:pull
+> bundle exec cap production db:pull
+
 sidekiq
 -------
 
