@@ -38,7 +38,8 @@ class DrugsQuery
 
   def by_name
     @scope = scope.
-      query( prefix: { name: form.query } ).
+      #query( match: { name: form.query } ).
+      query( bool: { should: [{ match: { name: form.query } }, { prefix: { name: form.query }}]} ).
       highlight(fields: { name: {"term_vector" => "with_positions_offsets"} })
   end
 
