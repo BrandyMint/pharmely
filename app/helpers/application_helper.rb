@@ -17,6 +17,7 @@ module ApplicationHelper
   end
 
   def job_state model
+    return model.error_message if model.try(:error_message).present?
     return 'не запущен' unless model.job.present?
      case model.job.status
      when 'working'
@@ -25,6 +26,8 @@ module ApplicationHelper
       ("Выполнен&nbsp;#{human_time model.finish_at}"+
        "<i>(#{distance_of_time_in_words model.finish_at, model.start_at rescue '-'})</i>").
       html_safe
+     when 'failed'
+       "Завешрен с ошибкой: #{model.try(:error_message)}"
      else
       model.job.status
      end

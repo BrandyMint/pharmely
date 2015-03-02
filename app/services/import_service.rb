@@ -11,21 +11,27 @@ class ImportService
     drugs_count, errors_count = 0,0
     time_start = Time.now
 
+    $error = nil
     Chewy.strategy(strategy) do
       pharmacy.transaction do 
-        files.each do |file|
-          dc, ec = 
-            ImportFileService.
-            new(pharmacy: pharmacy, worker: worker, file: file).
-            perform
-          drugs_count  +=dc
-          errors_count +=ec
+        begin
+          files.each do |file|
+            dc, ec = 
+              ImportFileService.
+              new(pharmacy: pharmacy, worker: worker, file: file).
+              perform
+            drugs_count  +=dc
+            errors_count +=ec
+          end
+        rescue => err
+          $error = err
         end
       end
       pharmacy.touch
       delete_legacy time_start
     end
 
+    raise $error if $error.present?
     return drugs_count, errors_count
   end
 

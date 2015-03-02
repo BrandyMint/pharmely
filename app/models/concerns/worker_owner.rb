@@ -16,6 +16,8 @@ module WorkerOwner
           files: files).
       perform
     update_columns drugs_count: drugs_count, errors_count: errors_count
+  rescue => err
+    update_columns error_message: err.message
   ensure
     finish!
   end
