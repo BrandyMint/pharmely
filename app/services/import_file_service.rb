@@ -32,14 +32,18 @@ class ImportFileService
     detect_columns
     drugs = []
 
+
     worker.try :total, roo.last_row
 
     (first_row..roo.last_row).each do |row_num|
       worker.try :at, row_num
+      row = nil
       begin
-        drugs << import_row( roo.row row_num )
+        row = roo.row row_num
+        drugs << import_row( row )
       rescue => err
-        errors << LogEntity.new(row_num: row_num, message: err.to_s)
+        #errors << LogEntity.new(row_num: row_num, row: (roo.row(row_num) rescue nil), message: err.to_s)
+        errors << LogEntity.new(row_num: row_num, row: row, message: err.to_s)
         raise_error "Слишком много ошибок! (больше #{MAX_ERRORS})" if errors.count>MAX_ERRORS
       end
     end
@@ -103,9 +107,19 @@ class ImportFileService
 
   class LogEntity
     include Virtus.model 
+
     attribute :row_num, Integer
-    attribute :column_num, Integer
     attribute :message, String, required: true
+    attribute :row, Array
+
+    def to_s
+      "Строка #{row_num}:#{row.join('; ')} - #{message}"
+    end
+
+    def inspect
+      to_s
+    end
+
   end
 
   class Error < StandardError

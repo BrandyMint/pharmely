@@ -6,6 +6,11 @@
 
 .row
   .col-md-6
+    p Товаров в базе: #{pharmacy.drugs.count}
+    p Товаров в поиске: #{searchable_drugs_count pharmacy}
+
+.row
+  .col-md-6
     = render 'form', pharmacy: pharmacy
   .col-md-6
     = render 'import_info', pharmacy: pharmacy

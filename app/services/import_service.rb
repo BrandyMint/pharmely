@@ -23,12 +23,13 @@ class ImportService
             drugs_count  +=dc
             errors_count +=ec
           end
+          pharmacy.touch
+          delete_legacy time_start
         rescue => err
           $error = err
+          raise err
         end
       end
-      pharmacy.touch
-      delete_legacy time_start
     end
 
     raise $error if $error.present?
@@ -45,6 +46,7 @@ class ImportService
     worker.try :at, -1, 'Удаляю старые товары'
     deletes = pharmacy.drugs.where('updated_at<?', time_start)
     ids = deletes.pluck(:id)
+    Rails.logger.info "Удаляю старые твоары #{pharmacy.id}: #{ids}"
     DrugsIndex::Drug.filter(term: { id: ids }).delete_all unless Rails.env.test?
     deletes.delete_all
     worker.try :at, -2, 'Готово'

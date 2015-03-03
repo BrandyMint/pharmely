@@ -6,15 +6,22 @@ class Drug < ActiveRecord::Base
   validates :price, presence: true
   validates :name, presence: true
   validates :stock_quantity, presence: true, numericality: true
+  validates :price, presence: true, numericality: true
   #validates :producer, presence: true
   #validates :country, presence: true
 
   def self.create_from_elastic object
     attr = object.attributes
 
-    pharmacy = Pharmacy.where(name: attr['pharmacy.title']).first || Pharmacy.create!(name: attr['pharmacy.title'], city: attr['pharmacy.city'], address: attr['pharmacy.address'])
+    pharmacy = Pharmacy.where(name: attr['pharmacy.title']).first || 
+      Pharmacy.create!(name: attr['pharmacy.title'], 
+                       city: attr['pharmacy.city'], 
+                       address: attr['pharmacy.address'])
 
-    pharmacy.drugs.create! name: attr['name'], price: attr['price'], country: attr['country'], stock_quantity: attr['stock_quantity'], producer: attr['producer']
+    pharmacy.drugs.create! name: attr['name'], 
+      price: attr['price'], country: attr['country'], 
+      stock_quantity: attr['stock_quantity'], 
+      producer: attr['producer']
 
   end
 

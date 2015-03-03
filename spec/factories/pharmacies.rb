@@ -3,7 +3,6 @@ FactoryGirl.define do
   factory :pharmacy do
     company
     address { generate :address }
-    
   end
 
 end

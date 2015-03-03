@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   private
 
   def authenticate_admin_user!
+    return true if Rails.env.development?
     authenticate_or_request_with_http_basic("admin access") do |name, password|
       Secrets.admin.present? && name == Secrets.admin.name && password == Secrets.admin.password
     end

@@ -20,6 +20,7 @@ batch_action_admin_pharmacies POST   /admin/pharmacies/batch_action(.:format) ad
                               PUT    /admin/pharmacies/:id(.:format)          admin/pharmacies#update
                               DELETE /admin/pharmacies/:id(.:format)          admin/pharmacies#destroy
               admin_dashboard GET    /admin/dashboard(.:format)               admin/dashboard#index
+      admin_dashboard_reindex POST   /admin/dashboard/reindex(.:format)       admin/dashboard#reindex
  batch_action_admin_companies POST   /admin/companies/batch_action(.:format)  admin/companies#batch_action
               admin_companies GET    /admin/companies(.:format)               admin/companies#index
                               POST   /admin/companies(.:format)               admin/companies#create

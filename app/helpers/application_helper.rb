@@ -84,7 +84,7 @@ module ApplicationHelper
   end
 
   def total_drugs_count
-    PharmacyIndex.filter{ match_all }.total_count
+    DrugsIndex.filter{ match_all }.total_count
   end
 
   def tel_to tel
