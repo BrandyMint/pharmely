@@ -44,10 +44,17 @@ class ImportService
 
   def delete_legacy time_start
     worker.try :at, -1, 'Удаляю старые товары'
-    deletes = pharmacy.drugs.where('updated_at<?', time_start)
-    ids = deletes.pluck(:id)
-    Rails.logger.info "Удаляю старые твоары #{pharmacy.id}: #{ids}"
-    DrugsIndex::Drug.filter(term: { id: ids }).delete_all unless Rails.env.test?
+    deletes = pharmacy.drugs.where('created_at<?', time_start)
+    #ids = deletes.pluck(:id)
+    stay_ids = pharmacy.drugs.where( 'created_at>?', time_start ).pluck :id
+    #Rails.logger.info "Удаляю старые твоары #{pharmacy.id}: #{ids}"
+    unless Rails.env.test?
+      DrugsIndex::Drug.filter(
+        and: [ 
+          {not: { terms: { id: stay_ids }}}, 
+          { term: { pharmacy_id: pharmacy.id} } ]
+      ).delete_all 
+    end
     deletes.delete_all
     worker.try :at, -2, 'Готово'
   end

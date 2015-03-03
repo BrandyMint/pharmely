@@ -15,7 +15,7 @@ ActiveAdmin.register_page "Dashboard" do
     div class: "blank_slate_container", id: "dashboard_default_message" do
       span class: "blank_slate" do
         span "В поиске товаров"
-        small DrugsIndex.filter{ match_all }.total_count
+        small DrugsIndex.filter{ match_all }.total_count rescue '-'
         span "В базе товаров"
         small Drug.count
       end
