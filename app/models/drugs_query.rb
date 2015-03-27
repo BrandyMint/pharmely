@@ -4,7 +4,7 @@ class DrugsQuery
   attribute :form,     DrugsSearchForm
   attribute :page,     Integer
   attribute :pharmacy, Pharmacy
-  attribute :show_for_order
+  attribute :with_price_only
 
   def result
     if form.q.present?
@@ -15,14 +15,14 @@ class DrugsQuery
 
     by_pharmacy if pharmacy.present?
     sorting if form.sortable_column.present?
-    filter_for_order unless show_for_order
+    filter_without_price if with_price_only
 
     scope.page page
   end
 
   private
 
-  def filter_for_order
+  def filter_without_price
     @scope = scope.filter{ price > 0 }
   end
 

@@ -13,7 +13,7 @@ class DrugsController < ApplicationController
 
   def query
     DrugsQuery.new form: drugs_search_form, page: params[:page],
-      show_for_order: Settings.show_drugs_for_order
+      with_price_only: Settings.show_drugs_with_price_only
   end
 
 end

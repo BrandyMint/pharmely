@@ -1,5 +1,5 @@
 defaults: &defaults
-  show_drugs_for_order: false
+  show_drugs_with_price_only: false
 
 development:
   <<: *defaults
