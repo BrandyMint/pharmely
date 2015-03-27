@@ -11,6 +11,8 @@ gem 'grape-entity'
 
 gem 'hashie'
 
+gem 'settingslogic'
+
 gem "bugsnag"
 gem 'enumerize'
 

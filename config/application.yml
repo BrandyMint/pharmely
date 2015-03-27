@@ -1,0 +1,11 @@
+defaults: &defaults
+  show_drugs_for_order: false
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

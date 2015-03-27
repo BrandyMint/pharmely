@@ -12,7 +12,8 @@ class DrugsController < ApplicationController
   private
 
   def query
-    DrugsQuery.new form: drugs_search_form, page: params[:page], show_for_order: true
+    DrugsQuery.new form: drugs_search_form, page: params[:page],
+      show_for_order: Settings.show_drugs_for_order
   end
 
 end
