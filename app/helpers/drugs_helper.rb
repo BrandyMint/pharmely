@@ -18,4 +18,17 @@ module DrugsHelper
     end
     content_tag :span, title.html_safe, title: tooltip, data: { toggle: :tooltip }
   end
+
+  def pharmacy_title_with_address drug
+    title, address = case drug
+    when DrugsIndex::Drug
+      [drug.pharmacy['title'], drug.pharmacy['address']]
+    when Drug
+      [drug.pharmacy.title, drug.pharmacy.address]
+    else
+      raise ArgumentError
+    end
+
+    "#{title} (#{address})"
+  end
 end
