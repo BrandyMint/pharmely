@@ -291,7 +291,7 @@ GEM
       kaminari
       rails
     kgio (2.9.2)
-    libv8 (3.16.14.3)
+    libv8 (3.16.14.7)
     listen (2.7.12)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
