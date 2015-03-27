@@ -1,0 +1,11 @@
+defaults: &defaults
+  show_drugs_with_price_only: false
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

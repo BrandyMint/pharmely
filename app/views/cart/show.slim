@@ -6,7 +6,7 @@
   table.table.table-hover.table-condensed.search_results
     - cart.items.each do |i|
       tr
-        td= i.drug.pharmacy.title
+        td= pharmacy_title_with_address i.drug
         td
           = i.drug.name
           i.text-muted

@@ -12,7 +12,8 @@ class DrugsController < ApplicationController
   private
 
   def query
-    DrugsQuery.new form: drugs_search_form, page: params[:page]
+    DrugsQuery.new form: drugs_search_form, page: params[:page],
+      with_price_only: Settings.show_drugs_with_price_only
   end
 
 end
