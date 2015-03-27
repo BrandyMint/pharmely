@@ -4,7 +4,7 @@ class DrugsQuery
   attribute :form,     DrugsSearchForm
   attribute :page,     Integer
   attribute :pharmacy, Pharmacy
-  attribute :with_price_only
+  attribute :with_price_only, Boolean, default: false
 
   def result
     if form.q.present?
