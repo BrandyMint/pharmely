@@ -14,7 +14,7 @@ table.table.table-hover.table-condensed.search_results
   - drugs_search_results.each do |d|
     tr
       - unless @pharmacy.present?
-        td= link_to d.pharmacy['title'], pharmacy_url(d.pharmacy_id, drugs_search_form: drugs_search_form.to_hash)
+        td= link_to "#{d.pharmacy['title']} (#{d.pharmacy['address']})", pharmacy_url(d.pharmacy_id, drugs_search_form: drugs_search_form.to_hash)
       td== d.name
       td(nowrap style='text-align: right')= format_money d.price
       td== stock_quantity d
