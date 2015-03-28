@@ -13,6 +13,7 @@ class DrugsQuery
       all
     end
 
+    by_city if form.city.present?
     by_pharmacy if pharmacy.present?
     sorting if form.sortable_column.present?
     filter_without_price if with_price_only
@@ -28,6 +29,10 @@ class DrugsQuery
 
   def by_pharmacy
     @scope = scope.filter( term: { pharmacy_id: pharmacy.id } )
+  end
+
+  def by_city
+    @scope = scope.query( match: { 'pharmacy.city' => form.city } )
   end
 
   def sorting
