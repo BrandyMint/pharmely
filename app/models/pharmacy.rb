@@ -5,6 +5,10 @@ class Pharmacy < ActiveRecord::Base
   has_many :bunches
   belongs_to :company
 
+  mount_uploader :building_photo, PhotoUploader
+  mount_uploader :exterior_photo, PhotoUploader
+  mount_uploader :interior_photo, PhotoUploader
+
   scope :ordered, -> { order :address }
 
   update_index('drugs#drug') { drugs }
