@@ -106,7 +106,7 @@ group :development, :test do
   gem 'spring'
   gem "rspec-rails"
   gem 'rspec-collection_matchers'
-  gem 'rb-inotify'
+  gem 'rb-inotify', require: false
   gem 'factory_girl_rails'
   gem "listen", "~> 2.7.12"
   gem 'guard'
