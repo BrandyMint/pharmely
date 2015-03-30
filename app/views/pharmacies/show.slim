@@ -14,10 +14,11 @@ h1= @pharmacy
       .glyphicon.glyphicon-time
       | &nbsp;
       = pharmacy.work_time
-    .pharmacy-photos
-      div= photo_tag pd, :building_photo
-      div= photo_tag pd, :exterior_photo
-      div= photo_tag pd, :interior_photo
+    - if pd.one_or_more_photo?
+      .pharmacy-photos
+        div= photo_tag pd, :building_photo
+        div= photo_tag pd, :exterior_photo
+        div= photo_tag pd, :interior_photo
 
   .col-md-4
     = render 'pharmacy_map', address: pd.full_address
