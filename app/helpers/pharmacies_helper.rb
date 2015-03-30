@@ -11,6 +11,6 @@ module PharmaciesHelper
 
   def photo_tag(pharmacy, name)
     image = pharmacy.send(name)
-    link_to image_tag(image), image.to_s
+    link_to(image_tag(image), image.to_s) if image.present?
   end
 end

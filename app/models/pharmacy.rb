@@ -37,6 +37,11 @@ class Pharmacy < ActiveRecord::Base
     [lng, lat]
   end
 
+  def one_or_more_photo?
+    building_photo.present? || exterior_photo.present? ||
+      interior_photo.present?
+  end
+
   private
 
   def generate_api_key
