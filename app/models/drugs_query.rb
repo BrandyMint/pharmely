@@ -17,6 +17,7 @@ class DrugsQuery
     by_pharmacy if pharmacy.present?
     sorting if form.sortable_column.present?
     filter_without_price if with_price_only
+    filter_closed_pharmacies if form.open_only?
 
     scope.page page
   end
@@ -25,6 +26,15 @@ class DrugsQuery
 
   def filter_without_price
     @scope = scope.filter{ price > 0 }
+  end
+
+  def filter_closed_pharmacies
+    now = Time.now
+    @scope = scope
+      .filter{ week_day_works_from > now }
+      .filter{ week_day_works_till < now }
+      .filter{ weekend_works_from > now }
+      .filter{ weekend_works_till < now }
   end
 
   def by_pharmacy

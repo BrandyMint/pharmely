@@ -13,12 +13,19 @@ h1= @pharmacy
     p
       .glyphicon.glyphicon-time
       | &nbsp;
-      = pharmacy.work_time
-    - if pd.one_or_more_photo?
-      .pharmacy-photos
-        div= photo_tag pd, :building_photo
-        div= photo_tag pd, :exterior_photo
-        div= photo_tag pd, :interior_photo
+      |ПН-ПТ:&nbsp;
+      = pd.work_time
+    p
+      .glyphicon.glyphicon-time
+      | &nbsp;
+      |СБ-ВС:&nbsp;
+      = pd.work_weekend_time
+    p
+      = pd.works_now?
+    .pharmacy-photos
+      div= photo_tag pd, :building_photo
+      div= photo_tag pd, :exterior_photo
+      div= photo_tag pd, :interior_photo
 
   .col-md-4
     = render 'pharmacy_map', address: pd.full_address
