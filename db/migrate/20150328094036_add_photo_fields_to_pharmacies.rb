@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-class CityCanBeNullInVendors < ActiveRecord::Migration
+class AddPhotoFieldsToPharmacies < ActiveRecord::Migration
 
   def up
     # These are extensions that must be enabled in order to support this database
