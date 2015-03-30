@@ -1,0 +1,15 @@
+language: ruby
+rvm:
+  - 2.1.4
+
+before_script:
+  #- sudo apt-get install geoip-database-contrib
+  - cp ./config/database.yml.vexor ./config/database.yml
+  - cp ./config/secrets.yml.example ./config/secrets.yml
+  - psql -U postgres -c 'create database test;'
+  - bundle exec rake db:migrate
+
+script: 
+  - bundle exec rake db:seed
+  - bundle exec rake spec
+  - bundle exec rake assets:precompile
