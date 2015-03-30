@@ -1,0 +1,21 @@
+ymaps.ready(function() {
+  var $map = $('[data-map]');
+  var yandexMap = new ymaps.Map('map', {
+    center: <%= Settings.maps.default_lat_lon %>,
+    zoom:   <%= Settings.maps.zoom %>,
+    controls: ['zoomControl']
+  });
+
+  ymaps.geocode($map.data('map'), {
+    results: 1
+  }).then(function (res) {
+    var firstGeoObject = res.geoObjects.get(0),
+        coords = firstGeoObject.geometry.getCoordinates(),
+        bounds = firstGeoObject.properties.get('boundedBy');
+
+    yandexMap.geoObjects.add(firstGeoObject);
+    yandexMap.setBounds(bounds, {
+      checkZoomRange: true
+    });
+  });
+});
