@@ -80,7 +80,7 @@ module ApplicationHelper
   end
 
   def app_title
-    'Панацея'
+    'apteka.ws'
   end
 
   def total_drugs_count
