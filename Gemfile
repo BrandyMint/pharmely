@@ -13,6 +13,8 @@ gem 'hashie'
 
 gem 'settingslogic'
 
+gem 'semver2'
+
 gem "bugsnag"
 gem 'enumerize'
 
