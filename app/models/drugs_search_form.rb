@@ -5,6 +5,7 @@ class DrugsSearchForm
   attr_accessor :sortable_column
   attr_accessor :order
   attr_accessor :city
+  attr_accessor :open_only
 
   def query
     value = q
@@ -29,6 +30,11 @@ class DrugsSearchForm
   end
 
   def to_hash
-    { q: q, city: city, sortable_column: sortable_column, order: order }
+    { q: q, city: city, open_only: open_only,
+      sortable_column: sortable_column, order: order }
+  end
+
+  def open_only?
+    open_only == '1' ? true : false
   end
 end

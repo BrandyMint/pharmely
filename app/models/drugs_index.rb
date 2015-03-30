@@ -12,6 +12,10 @@ class DrugsIndex < Chewy::Index
       field :title
       field :address
       field :city
+      field :week_day_works_from
+      field :week_day_works_till
+      field :weekend_works_from
+      field :weekend_works_till
     end
   end
 end

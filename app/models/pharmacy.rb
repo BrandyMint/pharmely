@@ -29,6 +29,20 @@ class Pharmacy < ActiveRecord::Base
     title
   end
 
+  def open?
+    return true if around_the_clock?
+    if time_filled?
+      time = Time.now
+      if Time.now.wday <= 5
+        (time.hour >= week_day_works_from.hour) && (time.hour < week_day_works_till.hour)
+      else
+        (time.hour >= weekend_works_from.hour) && (time.hour < weekend_works_till.hour)
+      end
+    else
+      false
+    end
+  end
+
   def drugs_count
     drugs.count
   end
@@ -48,4 +62,8 @@ class Pharmacy < ActiveRecord::Base
     self.api_key = SecureRandom.hex 5
   end
 
+  def time_filled?
+    week_day_works_from.present? && week_day_works_till.present? &&
+      weekend_works_from.present? && weekend_works_till.present?
+  end
 end
