@@ -13,7 +13,11 @@ class DrugsSearchForm
   end
 
   def available_cities
-    Company.select(:city).distinct.map(&:city)
+    query = Company.select(:city).union(
+      Pharmacy.select(:city)).to_sql
+
+    ActiveRecord::Base.connection.execute(query).to_a
+      .map(&:values).flatten.compact.sort
   end
 
   def to_s

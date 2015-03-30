@@ -4,6 +4,7 @@ ActiveAdmin.register Pharmacy do
   index do
     column :company
     column :telephones
+    column :city
     column :address
     column :work_time
     column :location
