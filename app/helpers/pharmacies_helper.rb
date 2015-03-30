@@ -8,4 +8,9 @@ module PharmaciesHelper
       tel_to tel
     end.join(' ').html_safe
   end
+
+  def photo_tag(pharmacy, name)
+    image = pharmacy.send(name)
+    link_to image_tag(image), image.to_s
+  end
 end
