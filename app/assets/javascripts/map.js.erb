@@ -1,12 +1,12 @@
 ymaps.ready(function() {
-  var $map = $('#map');
+  var $map = $('[data-map]');
   var yandexMap = new ymaps.Map('map', {
-    center: [55.753994, 37.622093],
-    zoom: 8,
+    center: <%= Settings.maps.default_lat_lon %>,
+    zoom:   <%= Settings.maps.zoom %>,
     controls: ['zoomControl']
   });
 
-  ymaps.geocode($map.data('address'), {
+  ymaps.geocode($map.data('map'), {
     results: 1
   }).then(function (res) {
     var firstGeoObject = res.geoObjects.get(0),
