@@ -13,12 +13,16 @@ class Pharmacy < ActiveRecord::Base
 
   update_index('drugs#drug') { drugs }
 
-  delegate :title, :city, to: :company
+  delegate :title, to: :company
 
   before_create :generate_api_key
 
   def self.find_by_key key
     where(api_key: key).first!
+  end
+
+  def city
+    super || company.city
   end
 
   def to_s
