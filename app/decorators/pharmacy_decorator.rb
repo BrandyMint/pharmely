@@ -23,6 +23,10 @@ class PharmacyDecorator < Draper::Decorator
     h.telephones source.telephones || source.company.telephones
   end
 
+  def full_address
+    "#{source.city}, #{source.address}"
+  end
+
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:
   #

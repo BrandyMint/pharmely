@@ -5,9 +5,7 @@ h1= @pharmacy
   .col-md-2
     = pd.logo '128x128'
   .col-md-6
-    = pd.city
-    | ,
-    = pd.address
+    = pd.full_address
     p 
       .glyphicon.glyphicon-phone-alt
       | &nbsp;
@@ -22,7 +20,7 @@ h1= @pharmacy
       div= photo_tag pd, :interior_photo
 
   .col-md-4
-    = render 'pharmacy_map'
+    = render 'pharmacy_map', address: pd.full_address
 
 .row
   .col-md-12
