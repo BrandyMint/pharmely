@@ -32,13 +32,13 @@ class DrugsQuery
     now = Time.now.strftime("%H%M").to_i
 
     @scope = if weekend_now?
-      scope
-        .filter { pharmacy.weekend_works_from <= now }
-        .filter { pharmacy.weekend_works_till >= now }
+      scope.filter {
+        (weekend_from <= now) & (weekend_till >= now)
+      }
     else
-      scope
-        .filter { pharmacy.week_day_works_from <= now }
-        .filter { pharmacy.week_day_works_till >= now }
+      scope.filter {
+        (week_day_from <= now) & (week_day_till >= now)
+      }
     end
   end
 

@@ -13,16 +13,16 @@ class DrugsIndex < Chewy::Index
       field :address
       field :city
 
-      field :week_day_from, type: 'short', value: ->(o) {
+      field :week_day_from, type: 'long', value: ->(o) {
         o.week_day_works_from.strftime("%H%M").to_i if o.week_day_works_from
       }
-      field :week_day_till, type: 'short', value: ->(o) {
+      field :week_day_till, type: 'long', value: ->(o) {
         o.week_day_works_till.strftime("%H%M").to_i if o.week_day_works_till
       }
-      field :weekend_from, type: 'short', value: ->(o) {
+      field :weekend_from, type: 'long', value: ->(o) {
         o.weekend_works_from.strftime("%H%M").to_i if o.weekend_works_from
       }
-      field :weekend_till, type: 'short', value: ->(o) {
+      field :weekend_till, type: 'long', value: ->(o) {
         o.weekend_works_till.strftime("%H%M").to_i if o.weekend_works_till
       }
     end
