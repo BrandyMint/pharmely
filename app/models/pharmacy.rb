@@ -22,7 +22,7 @@ class Pharmacy < ActiveRecord::Base
   end
 
   def city
-    super || company.city
+    super || (company.present? ? company.city : nil)
   end
 
   def to_s

@@ -46,5 +46,7 @@ ActiveAdmin.register Pharmacy do
       f.input :lat
       f.input :api_key
     end
+
+    actions
   end
 end
