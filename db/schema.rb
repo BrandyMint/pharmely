@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150330145730) do
+ActiveRecord::Schema.define(version: 20150331093041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(version: 20150330145730) do
     t.time     "weekend_works_from"
     t.time     "weekend_works_till"
     t.boolean  "around_the_clock",    default: false
+    t.string   "description"
   end
 
   add_index "pharmacies", ["company_id"], name: "index_pharmacies_on_company_id", using: :btree
