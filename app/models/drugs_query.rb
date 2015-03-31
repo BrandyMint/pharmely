@@ -29,12 +29,17 @@ class DrugsQuery
   end
 
   def filter_closed_pharmacies
-    now = Time.now
-    @scope = scope
-      .filter{ week_day_works_from > now }
-      .filter{ week_day_works_till < now }
-      .filter{ weekend_works_from > now }
-      .filter{ weekend_works_till < now }
+    now = Time.now.strftime("%H%M").to_i
+
+    @scope = if weekend_now?
+      scope.filter {
+        (weekend_from <= now) & (weekend_till >= now)
+      }
+    else
+      scope.filter {
+        (week_day_from <= now) & (week_day_till >= now)
+      }
+    end
   end
 
   def by_pharmacy
@@ -64,4 +69,10 @@ class DrugsQuery
       highlight(fields: { name: {"term_vector" => "with_positions_offsets"} })
   end
 
+  private
+
+  def weekend_now?
+    now = Time.now
+    now.saturday? || now.sunday?
+  end
 end
