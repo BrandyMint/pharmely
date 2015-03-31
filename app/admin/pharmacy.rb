@@ -27,4 +27,24 @@ ActiveAdmin.register Pharmacy do
 
   permit_params Pharmacy.attribute_names
 
+  form do |f|
+    f.inputs do
+      f.input :company
+      f.input :city
+      f.input :address
+      f.input :telephones
+      f.input :building_photo
+      f.input :exterior_photo
+      f.input :interior_photo
+      f.input :week_day_works_from, include_blank: false
+      f.input :week_day_works_till, include_blank: false
+      f.input :weekend_works_from,  include_blank: false
+      f.input :weekend_works_till,  include_blank: false
+      f.input :around_the_clock
+      f.input :description
+      f.input :lng
+      f.input :lat
+      f.input :api_key
+    end
+  end
 end
