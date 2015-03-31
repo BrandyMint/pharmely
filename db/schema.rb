@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(version: 20150330145730) do
     t.time     "weekend_works_from"
     t.time     "weekend_works_till"
     t.boolean  "around_the_clock",    default: false
+    t.string   "description"
   end
 
   add_index "pharmacies", ["company_id"], name: "index_pharmacies_on_company_id", using: :btree
