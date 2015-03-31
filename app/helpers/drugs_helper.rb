@@ -22,9 +22,11 @@ module DrugsHelper
   def pharmacy_title_with_address drug
     title, address = case drug
     when DrugsIndex::Drug
-      [drug.pharmacy['title'], drug.pharmacy['address']]
+      [drug.pharmacy['title'],
+        "#{drug.pharmacy['city']}, #{drug.pharmacy['address']}".strip]
     when Drug
-      [drug.pharmacy.title, drug.pharmacy.address]
+      pharmacy = PharmacyDecorator.decorate(drug.pharmacy)
+      [pharmacy.title, pharmacy.full_address]
     else
       raise ArgumentError
     end
