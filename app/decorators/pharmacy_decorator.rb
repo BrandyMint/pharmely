@@ -8,7 +8,11 @@ class PharmacyDecorator < Draper::Decorator
   end
 
   def work_weekend_time
-    work_time_for(:weekend_works)
+    if source.working_in_weekends
+      work_time_for(:weekend_works)
+    else
+      'выходной'
+    end
   end
 
   def works_now?

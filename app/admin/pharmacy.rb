@@ -41,6 +41,7 @@ ActiveAdmin.register Pharmacy do
       f.input :weekend_works_from,  include_blank: false
       f.input :weekend_works_till,  include_blank: false
       f.input :around_the_clock
+      f.input :working_in_weekends
       f.input :description
       f.input :lng
       f.input :lat
