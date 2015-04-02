@@ -12,6 +12,7 @@ class DrugsIndex < Chewy::Index
       field :title
       field :address
       field :city
+      field :working_in_weekends
 
       field :week_day_from, type: 'long', value: ->(o) {
         o.week_day_works_from.strftime("%H%M").to_i if o.week_day_works_from
