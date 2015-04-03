@@ -34,11 +34,13 @@ class DrugsQuery
     @scope = if weekend_now?
       scope.filter {
         (working_in_weekends == true) &
-          (weekend_from <= now) & (weekend_till >= now)
+          (weekend_from <= now) & (weekend_till >= now) |
+            (around_the_clock == true)
       }
     else
       scope.filter {
-        (week_day_from <= now) & (week_day_till >= now)
+        (week_day_from <= now) & (week_day_till >= now) |
+          (around_the_clock == true)
       }
     end
   end
