@@ -1,6 +1,6 @@
 class Company < ActiveRecord::Base
-  has_many :pharmacies
-  has_many :drugs, through: :pharmacies
+  has_many :pharmacies, dependent: :destroy
+  has_many :drugs, through: :pharmacies, dependent: :destroy
 
   mount_uploader :logo, LogoUploader
 

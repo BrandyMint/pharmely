@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402123339) do
+ActiveRecord::Schema.define(version: 20150511171141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -161,5 +161,6 @@ ActiveRecord::Schema.define(version: 20150402123339) do
   add_foreign_key "bunch_files", "bunches"
   add_foreign_key "bunches", "pharmacies"
   add_foreign_key "drugs", "pharmacies"
+  add_foreign_key "pharmacies", "companies", name: "pharmacies_company_id_fk"
   add_foreign_key "price_lists", "pharmacies"
 end

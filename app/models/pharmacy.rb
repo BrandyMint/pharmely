@@ -1,8 +1,8 @@
 require 'securerandom'
 class Pharmacy < ActiveRecord::Base
-  has_many :drugs
-  has_many :price_lists
-  has_many :bunches
+  has_many :drugs, dependent: :destroy
+  has_many :price_lists, dependent: :destroy
+  has_many :bunches, dependent: :destroy
   belongs_to :company
 
   mount_uploader :building_photo, PhotoUploader
