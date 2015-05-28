@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150511171141) do
+ActiveRecord::Schema.define(version: 20150528073705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,6 +90,20 @@ ActiveRecord::Schema.define(version: 20150511171141) do
     t.string   "login"
     t.string   "password"
   end
+
+  create_table "drug_infos", force: :cascade do |t|
+    t.text     "title"
+    t.text     "producer"
+    t.text     "source"
+    t.text     "item_url"
+    t.text     "picture_url"
+    t.text     "html_data",                null: false
+    t.text     "eans",        default: [], null: false, array: true
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "drug_infos", ["eans"], name: "index_drug_infos_on_eans", using: :gin
 
   create_table "drugs", force: :cascade do |t|
     t.string   "name",                                    null: false
