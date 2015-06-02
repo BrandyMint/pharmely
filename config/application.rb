@@ -32,11 +32,14 @@ module Pharmely
 
     config.active_record.raise_in_transactional_callbacks = true
 
+    #config.active_job.queue_adapter = :sidekiq
+
     #config.assets.enabled = true
     config.autoload_paths += Dir[
       "#{Rails.root}/app/workers",
       "#{Rails.root}/app/services"
     ]
+
 
   end
 end

@@ -182,6 +182,8 @@ GEM
       json (>= 1.7)
     celluloid (0.16.0)
       timers (~> 4.0.0)
+    childprocess (0.5.6)
+      ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
@@ -193,11 +195,14 @@ GEM
       execjs
     coffee-script-source (1.9.0)
     colorize (0.7.5)
+    commonwatir (4.0.0)
     connection_pool (2.1.1)
     debug_inspector (0.0.2)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.2.5)
+    domain_name (0.5.24)
+      unf (>= 0.0.5, < 1.0.0)
     draper (1.2.1)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
@@ -263,6 +268,8 @@ GEM
     hashie (3.3.2)
     hike (1.2.3)
     hitimes (1.2.2)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
     httpauth (0.2.0)
     i18n (0.7.0)
     ice_cube (0.11.1)
@@ -301,6 +308,15 @@ GEM
     lumberjack (1.0.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mechanize (2.7.3)
+      domain_name (~> 0.5, >= 0.5.1)
+      http-cookie (~> 1.0)
+      mime-types (~> 2.0)
+      net-http-digest_auth (~> 1.1, >= 1.1.1)
+      net-http-persistent (~> 2.5, >= 2.5.2)
+      nokogiri (~> 1.4)
+      ntlm-http (~> 0.1, >= 0.1.1)
+      webrobots (>= 0.0.9, < 0.2)
     method_source (0.8.2)
     mime-types (2.4.3)
     mini_portile (0.6.2)
@@ -309,6 +325,8 @@ GEM
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     nenv (0.2.0)
+    net-http-digest_auth (1.4)
+    net-http-persistent (2.9.4)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
@@ -317,6 +335,7 @@ GEM
     notiffany (0.0.3)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    ntlm-http (0.1.1)
     oauth (0.4.7)
     oauth2 (0.8.1)
       faraday (~> 0.8)
@@ -325,6 +344,7 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.2)
     pg (0.17.1)
+    phantomjs (1.9.8.0)
     polyamorous (1.1.0)
       activerecord (>= 3.0)
     pry (0.9.12.6)
@@ -421,6 +441,11 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    selenium-webdriver (2.45.0)
+      childprocess (~> 0.5)
+      multi_json (~> 1.0)
+      rubyzip (~> 1.0)
+      websocket (~> 1.0)
     semver2 (3.3.3)
     settingslogic (2.0.9)
     shellany (0.0.1)
@@ -496,6 +521,9 @@ GEM
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.1)
     unicorn (4.8.3)
       kgio (~> 2.6)
       rack
@@ -505,11 +533,24 @@ GEM
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
       equalizer (~> 0.0, >= 0.0.9)
+    watir (5.0.0)
+      commonwatir (~> 4)
+      watir-webdriver
+    watir-dom-wait (0.2.1)
+      watir-webdriver
+    watir-rails (1.0.1)
+      rack
+      rails
+      watir (~> 5.0)
+    watir-webdriver (0.7.0)
+      selenium-webdriver (>= 2.45)
     web-console (2.0.0)
       activemodel (~> 4.0)
       binding_of_caller (>= 0.7.2)
       railties (~> 4.0)
       sprockets-rails (>= 2.0, < 4.0)
+    webrobots (0.1.1)
+    websocket (1.2.2)
 
 PLATFORMS
   ruby
@@ -549,7 +590,9 @@ DEPENDENCIES
   kaminari-bootstrap
   kaminari-i18n
   listen (~> 2.7.12)
+  mechanize
   pg
+  phantomjs
   pry
   pry-nav
   pry-syntax-hacks
@@ -585,4 +628,6 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   unicorn
   virtus
+  watir-dom-wait
+  watir-rails
   web-console (~> 2.0)

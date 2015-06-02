@@ -62,6 +62,12 @@ gem 'pg'
 
 gem 'draper'
 
+gem 'phantomjs'
+gem 'watir-rails'
+gem 'watir-dom-wait'
+
+gem 'mechanize'
+
 #gem 'devise', github: 'plataformatec/devise', branch: 'lm-rails-4-2'
 gem 'inherited_resources' #, github: 'codecraft63/inherited_resources', branch: 'master'
 gem 'responders'#, '~> 2.0'
