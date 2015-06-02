@@ -72,6 +72,7 @@ gem 'mechanize'
 gem 'inherited_resources' #, github: 'codecraft63/inherited_resources', branch: 'master'
 gem 'responders'#, '~> 2.0'
 gem 'activeadmin', github: 'activeadmin'
+gem 'active_admin_editor'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
