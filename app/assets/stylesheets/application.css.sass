@@ -1,6 +1,41 @@
 @import "bootstrap-sprockets"
 @import "bootstrap"
 
+
+
+
+.navbar-header
+  $height: 100px
+
+  @include box-sizing(border-box)
+  height: $height
+
+  .navbar-brand
+    position: relative
+    float: left
+    height: 100%
+
+    img
+      height: 100%
+      width: auto
+
+  .title
+    position: relative
+
+    a
+      position: absolute
+      top: 50%
+      @include translate(0, -50%)
+
+      color: inherit
+
+      &:hover
+        text-decoration: none
+
+
+#main .bs-docs-header
+  @include gradient-vertical(#239631, darken(#239631, 5%),0%, 100%)
+
 .search_results
   em
     background-color: #90f0f0
