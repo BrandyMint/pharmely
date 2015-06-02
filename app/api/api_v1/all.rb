@@ -8,7 +8,6 @@ class Api_v1::All < Grape::API
       requires :bunch_key,   type: String,  desc: 'Ключ пакета [a-z0-9] (один для всех файлов в пакете)'
       requires :max,         type: Integer, desc: 'Количество файлов в пакете'
       requires :current,     type: Integer, desc: 'Номер текущего файла'
-      requires :pharmacy_id, type: Integer, desc: 'ID аптеки'
       optional :try,         type: Integer, desc: 'Номер попытки'
       optional :type,        type: String,  desc: 'Тип файла (по-умолчанию csv)', default: 'csv'
     end
