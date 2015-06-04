@@ -6,19 +6,19 @@ class ParseDrugsInfoJob < ActiveJob::Base
 
   def perform(*args)
 
-    request_delay = args[0].to_i
+    browser = get_phantomjs_browser
+
+    return if !browser
 
     source_root = "http://www.wer.ru"
     source_base = "http://www.wer.ru/medicines/"
-
-
-    browser = Watir::Browser.new :phantomjs
     links = []
+    request_delay = args[0].to_i
 
     browser.goto source_base
 
-    # проходимся по пагинации
-    browser.nav(class: "pages").spans[0..1].each do |span|
+    # проходимся по пагинации на распарсеной первой странице
+    browser.nav(class: "pages").spans.each do |span|
 
       span.click
 
@@ -27,6 +27,7 @@ class ParseDrugsInfoJob < ActiveJob::Base
 
         html = Nokogiri::HTML div.html
 
+        # проходим по списку, собираем что нужно
         html.css('.list-products-cnt li').each do |li|
 
           title = li.css('.product_title').text
@@ -38,7 +39,7 @@ class ParseDrugsInfoJob < ActiveJob::Base
           links << link
           puts "#{links.length}) найдена ссылка для #{title} - #{links.last}"
 
-          end
+        end
       end
 
       sleep request_delay
@@ -88,7 +89,17 @@ class ParseDrugsInfoJob < ActiveJob::Base
     end
 
     puts "всего добавлено #{DrugInfo.all.count} записей"
- end
+  end
+
+  def get_phantomjs_browser
+    begin
+      return Watir::Browser.new :phantomjs
+    rescue Selenium::WebDriver::Error::WebDriverError
+      puts "Selenium::WebDriver::Error::WebDriverError - проверьте наличие на сервере phantomjs"
+      return false
+    end
+
+  end
 
   def get_link agent, link
     begin
