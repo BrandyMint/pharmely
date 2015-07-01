@@ -134,3 +134,4 @@ group :deploy do
   gem 'capistrano-bundler', :require => false
   gem "capistrano-db-tasks", :require => false
 end
+gem 'country_select', github: 'stefanpenner/country_select'
