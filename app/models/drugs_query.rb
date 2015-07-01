@@ -5,6 +5,7 @@ class DrugsQuery
   attribute :page,     Integer
   attribute :pharmacy, Pharmacy
   attribute :with_price_only, Boolean, default: false
+  attribute :quantity_gt_0, Boolean, default: false
 
   def result
     if form.q.present?
@@ -16,6 +17,7 @@ class DrugsQuery
     by_city if form.city.present?
     by_pharmacy if pharmacy.present?
     sorting if form.sortable_column.present?
+    filter_quantity_gt_0 if quantity_gt_0
     filter_without_price if with_price_only
     filter_closed_pharmacies if form.open_only?
 
@@ -23,6 +25,10 @@ class DrugsQuery
   end
 
   private
+
+  def filter_quantity_gt_0
+    @scope = scope.filter{ stock_quantity > 0 }
+  end
 
   def filter_without_price
     @scope = scope.filter{ price > 0 }
