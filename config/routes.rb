@@ -2,7 +2,9 @@ require 'sidekiq/web'
 require 'sidetiq/web' if defined? Sidetiq
 Rails.application.routes.draw do
 
-  get 'about' => 'about#index'
+  get 'page/:path' => 'page#show'
+
+  get 'about' => 'page#show', defaults: { path: 'about' }
 
   ActiveAdmin.routes(self)
   mount Sidekiq::Web => '/sidekiq' #, constraints: AdminOnlyConstraint
