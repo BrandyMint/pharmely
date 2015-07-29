@@ -1,5 +1,5 @@
 class PageController < ApplicationController
   def show
-     @page = Page.where(path: params[:path]).first
+    @page = Page.find_by! :path => params[:path]
   end
 end
