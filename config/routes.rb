@@ -2,8 +2,6 @@ require 'sidekiq/web'
 require 'sidetiq/web' if defined? Sidetiq
 Rails.application.routes.draw do
 
-  get 'about' => 'about#index'
-
   ActiveAdmin.routes(self)
   mount Sidekiq::Web => '/sidekiq' #, constraints: AdminOnlyConstraint
   # The priority is based upon order of creation: first created -> highest priority.
@@ -28,6 +26,8 @@ Rails.application.routes.draw do
   resource :cart, controller: :cart
 
   resources :cart_items
+
+  get ':path' => 'page#show', as: :page
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

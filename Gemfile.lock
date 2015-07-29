@@ -72,6 +72,14 @@ GIT
       rubyzip (>= 1.0.0)
 
 GIT
+  remote: git://github.com/stefanpenner/country_select.git
+  revision: 20f83bda911abd7c1d5cb96fd37f9ea22d892f0e
+  specs:
+    country_select (2.2.0)
+      countries (~> 0.11.0)
+      sort_alphabetical (~> 1.0)
+
+GIT
   remote: git://github.com/tim-vandecasteele/grape-swagger.git
   revision: c9fb720bc9e191dd4faa47237425a33edb899552
   specs:
@@ -201,6 +209,10 @@ GEM
     colorize (0.7.5)
     commonwatir (4.0.0)
     connection_pool (2.1.1)
+    countries (0.11.4)
+      currencies (~> 0.4.2)
+      i18n_data (~> 0.7.0)
+    currencies (0.4.2)
     debug_inspector (0.0.2)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -277,6 +289,7 @@ GEM
       domain_name (~> 0.5)
     httpauth (0.2.0)
     i18n (0.7.0)
+    i18n_data (0.7.0)
     ice_cube (0.11.1)
     ice_nine (0.11.0)
     inherited_resources (1.6.0)
@@ -492,6 +505,8 @@ GEM
       bcrypt-ruby (~> 3.0.0)
       oauth (~> 0.4.4)
       oauth2 (~> 0.8.0)
+    sort_alphabetical (1.0.1)
+      unicode_utils (>= 1.2.2)
     spreadsheet (1.0.1)
       ruby-ole (>= 1.0)
     spring (1.2.0)
@@ -529,6 +544,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.1)
+    unicode_utils (1.4.0)
     unicorn (4.8.3)
       kgio (~> 2.6)
       rack
@@ -576,6 +592,7 @@ DEPENDENCIES
   carrierwave
   chewy!
   coffee-rails (~> 4.1.0)
+  country_select!
   draper
   enumerize
   factory_girl_rails
@@ -637,3 +654,6 @@ DEPENDENCIES
   watir-dom-wait
   watir-rails
   web-console (~> 2.0)
+
+BUNDLED WITH
+   1.10.5
